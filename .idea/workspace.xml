@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c22c440-127f-413a-baa2-1492ebb6cf2f" name="Changes" comment="" />
+    <list default="true" id="9ab8b3eb-917d-48ac-b769-93e3106984c8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Administrador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuPrincipal.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,51 +23,38 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Nico1" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
-  <component name="ProjectId" id="2obp97XtT4DHDrK883b63tJhiOy" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2ocyMnMb6kURj3MxmzPmfGaJ1aF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application..executor": "Run",
-    "Application.DBConnection.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Nico1&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager">
-    <configuration type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="vista.MenuPrincipal" />
-      <module name="ProyectoCyber" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1c22c440-127f-413a-baa2-1492ebb6cf2f" name="Changes" comment="" />
-      <created>1731147975093</created>
+      <changelist id="9ab8b3eb-917d-48ac-b769-93e3106984c8" name="Changes" comment="" />
+      <created>1731183114040</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1731147975093</updated>
+      <updated>1731183114040</updated>
     </task>
     <servers />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProyectoCyber$DBConnection.ic" NAME="DBConnection Coverage Results" MODIFIED="1731154149162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
