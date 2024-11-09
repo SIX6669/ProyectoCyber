@@ -6,15 +6,15 @@ public class Transaccion {
     public int idTransaccion;
     public int nroLegajo;
     public int nroUsuario;
-    public int tiempoAdquirido;
+    public Time tiempoComprado;
     public Date fecha;
     public double total;
     
-    public Transaccion(int idTransaccion, int nroLegajo, int nroUsuario, int tiempoAdquirido, Date fecha, double total) {
+    public Transaccion(int idTransaccion, int nroLegajo, int nroUsuario, Time tiempoComprado, Date fecha, double total) {
         this.idTransaccion = idTransaccion;
         this.nroLegajo = nroLegajo;
         this.nroUsuario = nroUsuario;
-        this.tiempoAdquirido = tiempoAdquirido;
+        this.tiempoComprado = tiempoComprado;
         this.fecha = fecha;
         this.total = total;
     }
@@ -43,12 +43,12 @@ public class Transaccion {
         this.nroUsuario = nroUsuario;
     }
 
-    public int getTiempoAdquirido() {
-        return tiempoAdquirido;
+    public Time getTiempoComprado() {
+        return tiempoComprado;
     }
 
-    public void setTiempoAdquirido(int tiempoAdquirido) {
-        this.tiempoAdquirido = tiempoAdquirido;
+    public void setTiempoComprado(Time tiempoComprado) {
+        this.tiempoComprado = tiempoComprado;
     }
 
     public Date getFecha() {
@@ -69,6 +69,6 @@ public class Transaccion {
 
     @Override
     public String toString() {
-        return "Transaccion [idTransaccion=" + idTransaccion + ", nroLegajo=" + nroLegajo + ", nroUsuario=" + nroUsuario + ", tiempoAdquirido=" + tiempoAdquirido + ", fecha=" + fecha + ", total=" + total + "]";
+        return "Transaccion [idTransaccion=" + idTransaccion + ", nroLegajo=" + nroLegajo + ", nroUsuario=" + nroUsuario + ", tiempoAdquirido=" + tiempoComprado + ", fecha=" + fecha + ", total=" + total + "]";
     }
 }
