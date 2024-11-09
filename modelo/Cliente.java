@@ -64,4 +64,9 @@ public class Cliente {
     public void setTiempoAdquirido(String tiempoAdquirido) {
         this.tiempoAdquirido = tiempoAdquirido;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente [nroUsuario=" + nroUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", email=" + email + ", tiempoAdquirido=" + tiempoAdquirido + "]";
+    }
 }
