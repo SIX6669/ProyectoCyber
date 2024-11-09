@@ -1,19 +1,19 @@
 package modelo;
 
+import java.sql.*;
+
 public class Cliente {
     public int nroUsuario;
     public String nombre;
     public String apellido;
-    public String telefono;
-    public String email;
-    public String tiempoAdquirido;
+    public int telefono;
+    public Time tiempoAdquirido;
 
-    public Cliente(int nroUsuario, String nombre, String apellido, String telefono, String email, String tiempoAdquirido) {
+    public Cliente(int nroUsuario, String nombre, String apellido, int telefono, Time tiempoAdquirido) {
         this.nroUsuario = nroUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-        this.email = email;
         this.tiempoAdquirido = tiempoAdquirido;
     }
 
@@ -41,32 +41,24 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTiempoAdquirido() {
+    public Time getTiempoAdquirido() {
         return tiempoAdquirido;
     }
 
-    public void setTiempoAdquirido(String tiempoAdquirido) {
+    public void setTiempoAdquirido(Time tiempoAdquirido) {
         this.tiempoAdquirido = tiempoAdquirido;
     }
 
     @Override
     public String toString() {
-        return "Cliente [nroUsuario=" + nroUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", email=" + email + ", tiempoAdquirido=" + tiempoAdquirido + "]";
+        return "Cliente [nroUsuario=" + nroUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", tiempoAdquirido=" + tiempoAdquirido + "]";
     }
 }
