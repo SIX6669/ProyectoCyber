@@ -1,42 +1,45 @@
 package modelo;
 
 public class Computadora {
-    public int idComputadora;
-    public String estado;
-    public int nroUsuario;
+    public int ID_Computadora;
+    public int estado;
+    public int ID_Usuario;
 
-    public Computadora(int idComputadora, String estado, int nroUsuario) {
-        this.idComputadora = idComputadora;
+    public Computadora(int ID_Computadora, int estado, int ID_Usuario) {
+        this.ID_Computadora = ID_Computadora;
         this.estado = estado;
-        this.nroUsuario = nroUsuario;
+        this.ID_Usuario = ID_Usuario;
+    }
+
+    public Computadora() {
     }
     
-    public int getIdComputadora() {
-        return idComputadora;
+    public int getID_Computadora() {
+        return ID_Computadora;
     }
 
-    public void setIdComputadora(int idComputadora) {
-        this.idComputadora = idComputadora;
+    public void setID_Computadora(int ID_Computadora) {
+        this.ID_Computadora = ID_Computadora;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
-    public int getNroUsuario() {
-        return nroUsuario;
+    public int getID_Usuario() {
+        return ID_Usuario;
     }
 
-    public void setNroUsuario(int nroUsuario) {
-        this.nroUsuario = nroUsuario;
+    public void setID_Usuario(int nroUsuario) {
+        this.ID_Usuario = nroUsuario;
     }
 
     @Override
     public String toString() {
-        return "Computadora [idComputadora=" + idComputadora + ", estado=" + estado + ", nroLegajo=" + "]";
+        return "Computadora [idComputadora=" + ID_Computadora + ", estado=" + estado + ", nroLegajo=" + "]";
     }
 }

@@ -1,11 +1,11 @@
 package vista;
 
 import java.sql.SQLException;
-
-import static BD.util.DBConnection.setConnection;
+import controlador.*;
 
 public class MenuPrincipal {
     public static void main(String[] args) throws SQLException {
-        setConnection();
+        ComputadoraController computadoraController = new ComputadoraController();
+        computadoraController.verComputadoras();
     }
 }

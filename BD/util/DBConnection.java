@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 public class DBConnection {
     public static String URL ="";
     public static String user = "";
@@ -12,7 +11,7 @@ public class DBConnection {
 
 
     public static String[] getDatos(){
-        String path = "/Users/simon/Documents/GitHub/ProyectoCyber/BD/util/credenciales.txt";
+        String path = "D:/Datos Usuario/Documents/GitHub/ProyectoCyber/BD/util/credenciales.txt";
 
         String[] datos = new String[3];
 
@@ -44,12 +43,4 @@ public class DBConnection {
 
         return DriverManager.getConnection(URL, user, pass);
     }
-
-    //Insertar(Tabla Y Columna)
-
-    //Listar
-
-    //Eliinar
-
-    //REstar
 }

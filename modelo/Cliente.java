@@ -3,26 +3,26 @@ package modelo;
 import java.sql.*;
 
 public class Cliente {
-    public int nroUsuario;
+    public int ID_Usuario;
     public String nombre;
     public String apellido;
     public int telefono;
     public Time tiempoAdquirido;
 
-    public Cliente(int nroUsuario, String nombre, String apellido, int telefono, Time tiempoAdquirido) {
-        this.nroUsuario = nroUsuario;
+    public Cliente(int ID_Usuario, String nombre, String apellido, int telefono, Time tiempoAdquirido) {
+        this.ID_Usuario = ID_Usuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.tiempoAdquirido = tiempoAdquirido;
     }
 
-    public int getNroUsuario() {
-        return nroUsuario;
+    public int getID_Usuario() {
+        return ID_Usuario;
     }
 
-    public void setNroUsuario(int nroUsuario) {
-        this.nroUsuario = nroUsuario;
+    public void setID_Usuario(int ID_Usuario) {
+        this.ID_Usuario = ID_Usuario;
     }
 
     public String getNombre() {
@@ -59,6 +59,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente [nroUsuario=" + nroUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", tiempoAdquirido=" + tiempoAdquirido + "]";
+        return "Cliente [nroUsuario=" + ID_Usuario + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", tiempoAdquirido=" + tiempoAdquirido + "]";
     }
 }
