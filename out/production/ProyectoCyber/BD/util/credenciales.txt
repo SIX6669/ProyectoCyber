@@ -1,0 +1,3 @@
+jdbc:mysql://localhost:3306/Cyber?useSSL=false
+root
+Simon1234
