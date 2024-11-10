@@ -1,7 +1,6 @@
 package vista;
 
 import java.sql.SQLException;
-
 import static BD.util.DBConnection.setConnection;
 
 public class MenuPrincipal {

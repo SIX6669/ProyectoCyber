@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c22c440-127f-413a-baa2-1492ebb6cf2f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BD/util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/DBConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/AdministradorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/BD/AdministradorBD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/BD/ComputadoraBD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/BD/TransaccionBD.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/controlador/ClienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/controlador/ClienteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Administrador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Administrador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Cliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Computadora.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Computadora.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Transaccion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Transaccion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/vista/MenuPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/vista/MenuPrincipal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuPrincipal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +55,7 @@
     "Application.MenuPrincipal.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "simon",
+    "git-widget-placeholder": "#1 on simon",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",

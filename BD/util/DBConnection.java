@@ -45,11 +45,5 @@ public class DBConnection {
         return DriverManager.getConnection(URL, user, pass);
     }
 
-    //Insertar(Tabla Y Columna)
 
-    //Listar
-
-    //Eliinar
-
-    //REstar
 }
