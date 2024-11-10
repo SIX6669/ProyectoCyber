@@ -6,6 +6,8 @@ public class Cliente {
     public int ID_Usuario;
     public String nombre;
     public String apellido;
+    public String usuario;
+    public String clave;
     public int telefono;
     public Time tiempoAdquirido;
     public Cliente() {
@@ -29,6 +31,22 @@ public class Cliente {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public int getID_Usuario() {

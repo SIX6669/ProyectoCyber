@@ -112,6 +112,7 @@ public class ClienteController {
             throw e;
         }
     }
+
     public void eliminarUsuario(int idUsuario) throws SQLException {
         try (Connection connection = setConnection();
              PreparedStatement ps = connection.prepareStatement(DELETE_USER_SQL)) {
