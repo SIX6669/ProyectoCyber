@@ -1,11 +1,11 @@
 package controlador;
 
+import BD.util.DBConnection;
+import modelo.Computadora;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import BD.util.DBConnection;
-import modelo.Computadora;
 
 public class ComputadoraController {
     public void crear(Computadora computadora) throws SQLException {
