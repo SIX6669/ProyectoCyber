@@ -42,8 +42,7 @@ public class ClienteController {
 
             while (rs.next()){
                 Cliente cliente = new Cliente(rs.getInt("ID_Usuario"),rs.getString("Nombre"),
-                        rs.getString("Apellido"),rs.getInt("Tiempo"),
-                        rs.getTime("Telefono"));
+                        rs.getString("Apellido"), rs.getInt("Telefono"));
                 clientes.add(cliente);
             }
         }

@@ -25,7 +25,8 @@ public class MenuUsuario  {
             System.out.println("1. Ver detalle de su cuenta");
             System.out.println("2. Modificar sus datos");
             //Aca agregar opcion para realizar transaccion
-            System.out.println("3. Salir");
+            System.out.println("3. Realizar compra");
+            System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
 
             int opcion = sc.nextInt();
@@ -38,6 +39,8 @@ public class MenuUsuario  {
                         c.modificarUsuario();
                         break;
                     case 3:
+                        break;
+                    case 5:
                         ejecutar = false;
                         System.out.println("¡Hasta pronto!");
                         break;
