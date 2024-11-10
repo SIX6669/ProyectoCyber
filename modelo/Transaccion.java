@@ -8,8 +8,7 @@ public class Transaccion {
     public double total;
     public int ID_Usuario;
 
-    public Transaccion(int ID_Transaccion, Time TiempoComprado, double total, int ID_Usuario) {
-        this.ID_Transaccion = ID_Transaccion;
+    public Transaccion(Time TiempoComprado, double total, int ID_Usuario) {
         this.TiempoComprado = TiempoComprado;
         this.total = total;
         this.ID_Usuario = ID_Usuario;
@@ -17,10 +16,6 @@ public class Transaccion {
 
     public int getID_Transaccion() {
         return ID_Transaccion;
-    }
-
-    public void setID_Transaccion(int iD_Transaccion) {
-        ID_Transaccion = iD_Transaccion;
     }
 
     public Time getTiempoComprado() {

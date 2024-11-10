@@ -36,7 +36,7 @@ public class ComputadoraController {
                 int ID_Computadora = rs.getInt("ID_Computadora");
                 int estado = rs.getInt("estado");
                 int ID_Usuario = rs.getInt("ID_Usuario");
-                Computadora computadora = new Computadora(ID_Computadora, estado, ID_Usuario);
+                Computadora computadora = new Computadora(estado, ID_Usuario);
                 computadoras.add(computadora);
             }
         }

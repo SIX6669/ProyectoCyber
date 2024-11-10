@@ -10,20 +10,21 @@ public class Cliente {
     public Time tiempoAdquirido;
     public Cliente() {
     }
-// le saque el ID_usuario por que es autoincremental no hace falta que este en el constructor
-    //tiempo le saque mientras tanto
 
     public Cliente( String nombre, String apellido, int telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
     }
-    public Cliente(int ID_Usuario, String nombre, String apellido, int telefono, Time tiempo) {
+    
+    public Cliente(int ID_Usuario, String nombre, String apellido, int telefono, Time tiempoAdquirido) {
         this.ID_Usuario = ID_Usuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
+        this.tiempoAdquirido = tiempoAdquirido;
     }
+
     public Cliente(int ID_Usuario, String nombre, String apellido, int telefono) {
         this.ID_Usuario = ID_Usuario;
         this.nombre = nombre;
@@ -33,10 +34,6 @@ public class Cliente {
 
     public int getID_Usuario() {
         return ID_Usuario;
-    }
-
-    public void setID_Usuario(int nroUsuario) {
-        this.ID_Usuario = ID_Usuario;
     }
 
     public String getNombre() {

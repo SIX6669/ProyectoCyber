@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.ClienteController;
+import controlador.*;
 import modelo.Administrador;
 
 import java.sql.SQLException;
@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class MenuUsuario  {
     private Administrador a = new Administrador();
     private ClienteController c = new ClienteController();
-    private int tipoUsuario;
     private Scanner sc = new Scanner(System.in);
     private static boolean ejecutar = true;
 
@@ -24,7 +23,6 @@ public class MenuUsuario  {
             System.out.println("\n=== MENÚ USUARIOS ===");
             System.out.println("1. Ver detalle de su cuenta");
             System.out.println("2. Modificar sus datos");
-            //Aca agregar opcion para realizar transaccion
             System.out.println("3. Realizar compra");
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");

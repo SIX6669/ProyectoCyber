@@ -20,22 +20,45 @@ public class TransaccionController {
             stmt.executeUpdate();
         }
     }
-
-    public void crearTransaccion() {
+    
+    public void crearTransaccion(int ID_Usuario) {
         Scanner scanner = new Scanner(System.in);
+    
+        System.out.println("Ingrese cuánto tiempo desea comprar: ");
+        System.out.println("1 - 30 minutos.");
+        System.out.println("2 - 1 hora.");
+        System.out.println("3 - 1:30 hs.");
+        System.out.println("4 - 2 hs.");
+        
+        int opcion = scanner.nextInt();
+        Time tiempoComprado;
+        double total;
+    
+        switch (opcion) {
+            case 1:
+                tiempoComprado = Time.valueOf("00:30:00");
+                total = 1000;
+                break;
+            case 2:
+                tiempoComprado = Time.valueOf("01:00:00");
+                total = 2000;
+                break;
+            case 3:
+                tiempoComprado = Time.valueOf("01:30:00");
+                total = 3000;
+                break;
+            case 4:
+                tiempoComprado = Time.valueOf("02:00:00");
+                total = 4000;
+                break;
+            default:
+                System.out.println("Opción inválida.");
+                scanner.close();
+                return;
+        }
 
-        System.out.print("Ingrese el tiempo comprado (HH:MM): ");
-        String tiempoCompradoStr = scanner.nextLine();
-        Time tiempoComprado = Time.valueOf(tiempoCompradoStr + ":00");
-
-        System.out.print("Ingrese el total de la transacción: ");
-        double total = scanner.nextDouble();
-
-        System.out.print("Ingrese el ID del usuario: ");
-        int idUsuario = scanner.nextInt();
-
-        Transaccion transaccion = new Transaccion(0, tiempoComprado, total, idUsuario);
-
+        Transaccion transaccion = new Transaccion(tiempoComprado, total, ID_Usuario);
+    
         try {
             crear(transaccion);
             System.out.println("Transacción creada con éxito.");
@@ -57,7 +80,7 @@ public class TransaccionController {
                 Time tiempoComprado = rs.getTime("TiempoComprado");
                 double total = rs.getDouble("total");
                 int ID_Usuario = rs.getInt("ID_Usuario");
-                Transaccion transaccion = new Transaccion(ID_Transaccion, tiempoComprado, total, ID_Usuario);
+                Transaccion transaccion = new Transaccion(tiempoComprado, total, ID_Usuario);
                 transacciones.add(transaccion);
             }
         }
@@ -95,7 +118,7 @@ public class TransaccionController {
                     Time tiempoComprado = rs.getTime("TiempoComprado");
                     double total = rs.getDouble("total");
                     int ID_Usuario = rs.getInt("ID_Usuario");
-                    transaccion = new Transaccion(ID_Transaccion, tiempoComprado, total, ID_Usuario);
+                    transaccion = new Transaccion(tiempoComprado, total, ID_Usuario);
                 }
             }
         }

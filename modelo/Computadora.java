@@ -5,8 +5,7 @@ public class Computadora {
     public int estado;
     public int ID_Usuario;
 
-    public Computadora(int ID_Computadora, int estado, int ID_Usuario) {
-        this.ID_Computadora = ID_Computadora;
+    public Computadora(int estado, int ID_Usuario) {
         this.estado = estado;
         this.ID_Usuario = ID_Usuario;
     }
@@ -16,10 +15,6 @@ public class Computadora {
 
     public int getID_Computadora() {
         return ID_Computadora;
-    }
-
-    public void setID_Computadora(int ID_Computadora) {
-        this.ID_Computadora = ID_Computadora;
     }
 
     public int getEstado() {

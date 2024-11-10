@@ -1,3 +1,3 @@
-jdbc:mysql://localhost:3306/Cyber?useSSL=false&allowPublicKeyRetrieval=true
-Nico
-110698
+jdbc:mysql://localhost:3306/Cyber
+root
+1234
