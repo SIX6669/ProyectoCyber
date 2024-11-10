@@ -47,6 +47,7 @@ public class MenuAdm {
                     case 4:
                         AdministradorController ac = new AdministradorController();
                         Cliente c = new Cliente();
+                        sc.nextLine();
                         System.out.println("Ingrese el nombre del usuario");
                         c.setNombre(sc.nextLine());
                         System.out.println("Ingrese el Apellido del usuario");
@@ -54,14 +55,34 @@ public class MenuAdm {
                         System.out.println("Ingrese el Telefono del usuario");
                         while (!sc.hasNextInt()) {
                             System.out.println("Por favor, ingrese un número de teléfono válido:");
-                            sc.next(); // Descarta la entrada no válida
+                            sc.next();
                         }
                         c.setTelefono(sc.nextInt());
-                        sc.nextLine(); // Limpiar el buffer después de nextInt()
+                        sc.nextLine();
                         ac.crearUsuario(c);
                     case 5:
                         break;
                     case 6:
+                        ClienteController cl = new ClienteController();
+                        System.out.println("Ingrese el ID del cliente a buscar:");
+
+
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Por favor, ingrese un ID válido (debe ser un número):");
+                            sc.next();
+                        }
+                        int idBusqueda = sc.nextInt();
+                        sc.nextLine();
+
+                        try {
+                            Cliente clienteEncontrado = cl.mostrarInfoUsuario(idBusqueda);
+                            if (clienteEncontrado == null) {
+                                System.out.println("No se pudo completar la búsqueda.");
+                            }
+                        } catch (SQLException e) {
+                            System.err.println("Error al buscar el cliente: " + e.getMessage());
+                            e.printStackTrace();
+                        }
                         break;
                     case 7:
                         ejecutar = false;

@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ab8b3eb-917d-48ac-b769-93e3106984c8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlador/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/AdministradorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlador/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/MenuIngreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuIngreso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/MenuUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuAdm.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuAdm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
