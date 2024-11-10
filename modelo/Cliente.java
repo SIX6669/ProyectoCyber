@@ -3,26 +3,40 @@ package modelo;
 import java.sql.*;
 
 public class Cliente {
-    public int nroUsuario;
+    public int ID_Usuario;
     public String nombre;
     public String apellido;
     public int telefono;
     public Time tiempoAdquirido;
+    public Cliente() {
+    }
+// le saque el ID_usuario por que es autoincremental no hace falta que este en el constructor
+    //tiempo le saque mientras tanto
 
-    public Cliente(int nroUsuario, String nombre, String apellido, int telefono, Time tiempoAdquirido) {
-        this.nroUsuario = nroUsuario;
+    public Cliente( String nombre, String apellido, int telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-        this.tiempoAdquirido = tiempoAdquirido;
+    }
+    public Cliente(int ID_Usuario, String nombre, String apellido, int telefono, Time tiempo) {
+        this.ID_Usuario = ID_Usuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+    }
+    public Cliente(int ID_Usuario, String nombre, String apellido, int telefono) {
+        this.ID_Usuario = ID_Usuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
     }
 
-    public int getNroUsuario() {
-        return nroUsuario;
+    public int getID_Usuario() {
+        return ID_Usuario;
     }
 
-    public void setNroUsuario(int nroUsuario) {
-        this.nroUsuario = nroUsuario;
+    public void setID_Usuario(int nroUsuario) {
+        this.ID_Usuario = ID_Usuario;
     }
 
     public String getNombre() {
@@ -59,6 +73,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente [nroUsuario=" + nroUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", tiempoAdquirido=" + tiempoAdquirido + "]";
+        return "Cliente [ID_Usuario=" + ID_Usuario + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", tiempoAdquirido=" + tiempoAdquirido + "]";
     }
 }

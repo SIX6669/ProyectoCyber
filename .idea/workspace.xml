@@ -4,62 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c22c440-127f-413a-baa2-1492ebb6cf2f" name="Changes" comment="" />
+    <list default="true" id="d3af7fb7-70d4-4004-a31f-a15871547a9a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/TPIGH/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vista/MenuAdm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vista/MenuAdmCliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vista/MenuAdmComputadora.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vista/MenuAdmManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vista/MenuIngreso.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vista/MenuUsuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vista/MenuUsuarioComputadora.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vista/MenuUsuarioTransaccion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ProyectoCyber.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoCyber.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_9_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_9_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BD/util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BD/util/credenciales.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/credenciales.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/AdministradorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/ComputadoraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ComputadoraController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/TransaccionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/TransaccionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Administrador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Computadora.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Computadora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Transaccion.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Transaccion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuPrincipal.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 1
-}</component>
-  <component name="ProjectId" id="2obp97XtT4DHDrK883b63tJhiOy" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application..executor": "Run",
-    "Application.DBConnection.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "juampi",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
+    "git-widget-placeholder": "Merging main",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="vista.MenuPrincipal" />
-      <module name="ProyectoCyber" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="1c22c440-127f-413a-baa2-1492ebb6cf2f" name="Changes" comment="" />
-      <created>1731147975093</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1731147975093</updated>
-    </task>
     <servers />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">

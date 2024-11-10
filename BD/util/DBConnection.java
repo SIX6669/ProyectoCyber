@@ -12,7 +12,7 @@ public class DBConnection {
 
 
     public static String[] getDatos(){
-        String path = "/Users/simon/Documents/GitHub/ProyectoCyber/BD/util/credenciales.txt";
+        String path = "C:/Users/Nebularmess/Documents/TUP/ProgII/TPIGH/BD/util/credenciales.txt";
 
         String[] datos = new String[3];
 
@@ -35,6 +35,7 @@ public class DBConnection {
         }
         return datos;
     }
+
 
     public static Connection setConnection() throws SQLException {
         String[] datos = getDatos();
