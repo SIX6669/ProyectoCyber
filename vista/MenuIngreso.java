@@ -2,15 +2,14 @@ package vista;
 
 import controlador.ClienteController;
 import modelo.Administrador;
-
 import java.util.Scanner;
 
 public class MenuIngreso {
-    protected Administrador a = new Administrador();
-    protected ClienteController c = new ClienteController();
-    protected int tipoUsuario;
-    Scanner sc = new Scanner(System.in);
-    protected static boolean ejecutar = true;
+    private Administrador a = new Administrador();
+    private ClienteController c = new ClienteController();
+    private int tipoUsuario;
+    private Scanner sc = new Scanner(System.in);
+    private static boolean ejecutar = true;
 
     public MenuIngreso() {
         mostrarMenuPrincipal();
@@ -21,19 +20,32 @@ public class MenuIngreso {
         tipoUsuario = sc.nextInt();
         sc.nextLine();
         if (tipoUsuario == 0) {
-            System.out.println("Ingrese su usuario");
-            this.a.usuario = sc.nextLine();
-            System.out.println("Ingrese su clave");
-            this.a.clave = sc.nextLine();
-            MenuUsuario m = new MenuUsuario();
+            ingresarComoCliente();
         } else {
-            System.out.println("Ingrese su usuario");
-            this.a.usuario = sc.nextLine();
-            System.out.println("Ingrese su clave");
-            this.a.clave = sc.nextLine();
-            // Aquí podrías manejar la lógica para el administrador
+            ingresarComoAdministrador();
         }
     }
+
+    private void ingresarComoCliente() {
+        System.out.println("Ingrese su usuario");
+        this.a.usuario = sc.nextLine();
+        System.out.println("Ingrese su clave");
+        this.a.clave = sc.nextLine();
+        MenuUsuario m = new MenuUsuario(a.getUsuario(), a.getClave());
+        m.MenuLogueado();
+    }
+
+    private void ingresarComoAdministrador() {
+        System.out.println("Ingrese su usuario");
+        this.a.usuario = sc.nextLine();
+        System.out.println("Ingrese su clave");
+        this.a.clave = sc.nextLine();
+        MenuAdm m =new MenuAdm(a.getUsuario(), a.getClave());
+        m.MenuLogueado();
+        // Aquí podrías manejar la lógica para el administrador
+    }
 }
+
+
 
 

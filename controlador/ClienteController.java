@@ -18,6 +18,37 @@ public class ClienteController {
     String sql = "";
     //Este metodo es para cuando el usuario quiera ver su informacion (El usuario solo puede ver su info ver como agregar de forma dinamica el nro de usuario segun su ID)
     private static final String SELECT_USER = "SELECT ID_Usuario, Nombre, Apellido, Telefono FROM cliente WHERE ID_Usuario = ?";
+    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido,Telefono) VALUES (?, ?, ?)";
+    private static final String SELECT_ALL_USERS = "SELECT * FROM Cliente";
+    private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE ID_Usuario = ?";
+    public void crearUsuario( Cliente cliente) throws SQLException {
+        try(Connection connection = setConnection();
+            PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL)) {
+            //ps.setInt(1,cliente.getID_Usuario()); lo comento pq es autoincremental
+            ps.setString(1,cliente.getNombre());
+            ps.setString(2, cliente.getApellido());
+            ps.setInt(3,cliente.getTelefono());
+            ps.executeUpdate();
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public ArrayList<Cliente> seleccTodoUsuario() throws SQLException{
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        try(Connection connection = setConnection();
+            PreparedStatement ps = connection.prepareStatement(SELECT_ALL_USERS)){
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                Cliente cliente = new Cliente(rs.getInt("ID_Usuario"),rs.getString("Nombre"),
+                        rs.getString("Apellido"),rs.getInt("Tiempo"),
+                        rs.getTime("Telefono"));
+                clientes.add(cliente);
+            }
+        }
+        return clientes;
+    }
     public Cliente mostrarInfoUsuario(int ID_Usuario) throws SQLException {
         try (Connection connection = setConnection();
              PreparedStatement ps = connection.prepareStatement(SELECT_USER)) {
@@ -45,7 +76,6 @@ public class ClienteController {
             throw e;
         }
     }
-    //Metodo modificar (el usuario nada mas puede ver y modificar su propia info)
     private static final String UPDATE_USER = "UPDATE Cliente SET  Nombre = ?, Apellido = ?, Telefono = ? WHERE ID_Usuario = ?";
 
     public void modificarUsuario() throws SQLException {
@@ -83,4 +113,20 @@ public class ClienteController {
             throw e;
         }
     }
+    public void eliminarUsuario(int idUsuario) throws SQLException {
+        try (Connection connection = setConnection();
+             PreparedStatement ps = connection.prepareStatement(DELETE_USER_SQL)) {
+            ps.setInt(1, idUsuario);
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("El usuario con ID " + idUsuario + " ha sido eliminado con éxito.");
+            } else {
+                System.out.println("No se encontró ningún usuario con el ID " + idUsuario);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar el usuario: " + e.getMessage());
+            throw e;
+        }
+    }
+
 }

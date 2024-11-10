@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import static BD.util.DBConnection.setConnection;
 
 public class AdministradorController {
-    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (NroUsuario, Nombre, Apellido,Telefono) VALUES (?, ?)";
+    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido,Telefono) VALUES (?, ?, ?)";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM Cliente WHERE NroUsuario = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Cliente";
-    private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE NroUsuario = ?";
+    private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE ID_Usuario = ?";
     private static final String UPDATE_USER_SQL = "UPDATE Cliente SET Nombre = ?, Apellido = ? WHERE NroUsuario = ?";
 
     public void crearUsuario( Cliente cliente) throws SQLException {
         try(Connection connection = setConnection();
             PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL)) {
-            ps.setInt(1,cliente.getID_Usuario());
-            ps.setString(2,cliente.getNombre());
-            ps.setString(3, cliente.getApellido());
-            ps.setInt(5,cliente.getTelefono());
+            //ps.setInt(1,cliente.getID_Usuario()); lo comento pq es autoincremental
+            ps.setString(1,cliente.getNombre());
+            ps.setString(2, cliente.getApellido());
+            ps.setInt(3,cliente.getTelefono());
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
@@ -36,9 +36,8 @@ public class AdministradorController {
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()){
-                Cliente cliente = new Cliente(rs.getInt("ID_Usuario"),rs.getString("Nombre"),
-                        rs.getString("Apellido"),rs.getInt("Tiempo"),
-                        rs.getTime("Telefono"));
+                Cliente cliente = new Cliente(rs.getString("Nombre"),
+                        rs.getString("Apellido"),rs.getInt("Telefono"));
                 System.out.println(cliente.toString());
             }
         }

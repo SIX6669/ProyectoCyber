@@ -10,7 +10,7 @@
       <change beforePath="$PROJECT_DIR$/controlador/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ClienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vista/MenuIngreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuIngreso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/MenuPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuUsuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
