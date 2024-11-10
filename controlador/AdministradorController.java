@@ -13,7 +13,7 @@ import static BD.util.DBConnection.setConnection;
 
 public class AdministradorController {
     //Para Usuarios
-    private static final String INSERT_ADMIN_SQL = "INSERT INTO Admin (NroLegajo, Usuario, Clave, Nombre, Apellido) VALUES (?, ?)";
+    private static final String INSERT_ADMIN_SQL = "INSERT INTO Admin (NroLegajo, Usuario, Clave, Nombre, Apellido) VALUES (?, ?, ?, ?, ?)";
     private static final String SELECT_ADMIN_BY_ID = "SELECT * FROM Admin WHERE NroLegajo = ?";
     private static final String SELECT_ALL_ADMIN = "SELECT * FROM Admin";
     private static final String DELETE_ADMIN_SQL = "DELETE FROM Admin WHERE NroLegajo = ?";
