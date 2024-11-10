@@ -1,62 +1,34 @@
 package modelo;
 
-import java.sql.*;
+import java.sql.Time;
 
 public class Transaccion {
-    public int idTransaccion;
-    public int nroLegajo;
-    public int nroUsuario;
-    public Time tiempoComprado;
-    public Date fecha;
+    public int ID_Transaccion;
+    public Time TiempoComprado; 
     public double total;
-    
-    public Transaccion(int idTransaccion, int nroLegajo, int nroUsuario, Time tiempoComprado, Date fecha, double total) {
-        this.idTransaccion = idTransaccion;
-        this.nroLegajo = nroLegajo;
-        this.nroUsuario = nroUsuario;
-        this.tiempoComprado = tiempoComprado;
-        this.fecha = fecha;
+    public int ID_Usuario;
+
+    public Transaccion(int ID_Transaccion, Time TiempoComprado, double total, int ID_Usuario) {
+        this.ID_Transaccion = ID_Transaccion;
+        this.TiempoComprado = TiempoComprado;
         this.total = total;
+        this.ID_Usuario = ID_Usuario;
     }
 
-    public int getIdTransaccion() {
-        return idTransaccion;
+    public int getID_Transaccion() {
+        return ID_Transaccion;
     }
 
-    public void setIdTransaccion(int idTransaccion) {
-        this.idTransaccion = idTransaccion;
-    }
-
-    public int getNroLegajo() {
-        return nroLegajo;
-    }
-
-    public void setNroLegajo(int nroLegajo) {
-        this.nroLegajo = nroLegajo;
-    }
-
-    public int getNroUsuario() {
-        return nroUsuario;
-    }
-
-    public void setNroUsuario(int nroUsuario) {
-        this.nroUsuario = nroUsuario;
+    public void setID_Transaccion(int iD_Transaccion) {
+        ID_Transaccion = iD_Transaccion;
     }
 
     public Time getTiempoComprado() {
-        return tiempoComprado;
+        return TiempoComprado;
     }
 
     public void setTiempoComprado(Time tiempoComprado) {
-        this.tiempoComprado = tiempoComprado;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+        TiempoComprado = tiempoComprado;
     }
 
     public double getTotal() {
@@ -67,8 +39,16 @@ public class Transaccion {
         this.total = total;
     }
 
+    public int getID_Usuario() {
+        return ID_Usuario;
+    }
+
+    public void setID_Usuario(int iD_Usuario) {
+        ID_Usuario = iD_Usuario;
+    }
+
     @Override
     public String toString() {
-        return "Transaccion [idTransaccion=" + idTransaccion + ", nroLegajo=" + nroLegajo + ", nroUsuario=" + nroUsuario + ", tiempoAdquirido=" + tiempoComprado + ", fecha=" + fecha + ", total=" + total + "]";
+        return "Transaccion [ID_Transaccion=" + ID_Transaccion + ", TiempoComprado=" + TiempoComprado + ", total=" + total + ", ID_Usuario=" + ID_Usuario + "]";
     }
 }
