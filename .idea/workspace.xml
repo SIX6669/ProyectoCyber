@@ -6,16 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1c22c440-127f-413a-baa2-1492ebb6cf2f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BD/util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/DBConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/AdministradorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/controlador/ClienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/controlador/ClienteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Administrador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Administrador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Cliente.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Computadora.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Computadora.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Transaccion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/modelo/Transaccion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCyber/vista/MenuPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCyber/vista/MenuPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/MenuPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Administrador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +29,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "SIX6669"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/SIX6669/ProyectoCyber.git",
+    "accountId": "c794f4c1-4cf6-45b5-bf5e-ef3a6e429e8b"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -46,22 +50,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application..executor": "Run",
-    "Application.DBConnection.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MenuPrincipal.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#1 on simon",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application..executor&quot;: &quot;Run&quot;,
+    &quot;Application.DBConnection.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MenuPrincipal.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#1 on simon&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
