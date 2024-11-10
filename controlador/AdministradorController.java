@@ -65,48 +65,49 @@ public class AdministradorController {
         return admins;
     }
 
-    public boolean cambiar(Administrador admin)throws SQLException{
+    public boolean cambiar(Administrador admin) throws SQLException {
         StringBuilder sql = new StringBuilder("UPDATE Admin SET ");
 
         boolean isFirst = true;
-        if(admin.getNombre() != null){
-            sql.append("Nombre = ?");
+        if (admin.getNombre() != null) {
+            sql.append(isFirst ? "" : ", ").append("Nombre = ?");
             isFirst = false;
         }
-        if(admin.getApellido() != null){
-            sql.append("Apellido = ?");
+        if (admin.getApellido() != null) {
+            sql.append(isFirst ? "" : ", ").append("Apellido = ?");
             isFirst = false;
         }
         if (admin.getUsuario() != null) {
-            sql.append("Usuario = ?");
+            sql.append(isFirst ? "" : ", ").append("Usuario = ?");
             isFirst = false;
         }
-        if (admin.getClave() != null){
-            sql.append("Clave = ?");
+        if (admin.getClave() != null) {
+            sql.append(isFirst ? "" : ", ").append("Clave = ?");
             isFirst = false;
         }
-
 
         sql.append(" WHERE NroLegajo = ?");
 
-        try(Connection connection = setConnection();
-            PreparedStatement ps = connection.prepareStatement(SELECT_ALL_ADMIN)){
+        try (Connection connection = setConnection();
+             PreparedStatement ps = connection.prepareStatement(sql.toString())) {
 
             int paramIndex = 1;
 
-            if(admin.getUsuario() != null){
+            if (admin.getNombre() != null) {
+                ps.setString(paramIndex++, admin.getNombre());
+            }
+            if (admin.getApellido() != null) {
+                ps.setString(paramIndex++, admin.getApellido());
+            }
+            if (admin.getUsuario() != null) {
                 ps.setString(paramIndex++, admin.getUsuario());
             }
-            if(admin.getNombre() != null){
-                ps.setString(paramIndex++,admin.getNombre());
+            if (admin.getClave() != null) {
+                ps.setString(paramIndex++, admin.getClave());
             }
-            if(admin.getApellido() != null){
-                ps.setString(paramIndex++,admin.getApellido());
-            }
-            if (admin.getClave() != null){
-                ps.setString(paramIndex++,admin.getClave());
-            }
-            ps.setInt(paramIndex,admin.getNroLegajo());
+
+            ps.setInt(paramIndex, admin.getNroLegajo());
+
             return ps.executeUpdate() > 0;
         }
     }

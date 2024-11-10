@@ -43,7 +43,64 @@ public class MenuAdm {
                         ac.seleccAdminLegajo(12);
                         break;
                     case 2:
-                        c.modificarUsuario();
+                        System.out.println("\n=== MODIFICAR DATOS DE ADMINISTRADOR ===");
+                        Administrador adminModificar = new Administrador();
+                        adminModificar.setNroLegajo(12);
+
+                        sc.nextLine();
+
+                        System.out.println("Deje en blanco los campos que no desea modificar (presione Enter)");
+
+                        System.out.println("Nuevo nombre :");
+                        String nuevoNombre = sc.nextLine().trim();
+                        if (!nuevoNombre.isEmpty()) {
+                            adminModificar.setNombre(nuevoNombre);
+                        }
+
+                        System.out.println("Nuevo apellido:");
+                        String nuevoApellido = sc.nextLine().trim();
+                        if (!nuevoApellido.isEmpty()) {
+                            adminModificar.setApellido(nuevoApellido);
+                        }
+
+                        System.out.println("Nuevo usuario :");
+                        String nuevoUsuario = sc.nextLine().trim();
+                        if (!nuevoUsuario.isEmpty()) {
+                            adminModificar.setUsuario(nuevoUsuario);
+                        }
+
+                        System.out.println("Nueva clave :");
+                        String nuevaClave = sc.nextLine().trim();
+                        if (!nuevaClave.isEmpty()) {
+                            adminModificar.setClave(nuevaClave);
+                        }
+
+                        try {
+                            AdministradorController adminController = new AdministradorController();
+                            boolean actualizado = adminController.cambiar(adminModificar);
+
+                            if (actualizado) {
+                                System.out.println("Datos actualizados correctamente.");
+                                // Actualizar los datos del administrador actual
+                                if (nuevoNombre.isEmpty()) {
+                                    a.setNombre(nuevoNombre);
+                                }
+                                if (nuevoApellido.isEmpty()) {
+                                    a.setApellido(nuevoApellido);
+                                }
+                                if (nuevoUsuario.isEmpty()) {
+                                    a.setUsuario(nuevoUsuario);
+                                }
+                                if (nuevaClave.isEmpty()) {
+                                    a.setClave(nuevaClave);
+                                }
+                            } else {
+                                System.out.println("No se pudo actualizar los datos. Por favor, intente nuevamente.");
+                            }
+                        } catch (SQLException e) {
+                            System.err.println("Error al actualizar los datos: " + e.getMessage());
+                            e.printStackTrace();
+                        }
                         break;
                     case 3: //ver logica de juampi
                         break;
