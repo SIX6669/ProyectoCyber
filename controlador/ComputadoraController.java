@@ -69,8 +69,6 @@ public class ComputadoraController {
              PreparedStatement stmt = con.prepareStatement(sql)) { 
             stmt.setInt(1, nuevoEstado);
             stmt.setInt(2, ID_Computadora); 
-            
-
             int filasActualizadas = stmt.executeUpdate();
             if (filasActualizadas > 0) {
                 System.out.println("Computadora actualizada con éxito.");
@@ -82,23 +80,28 @@ public class ComputadoraController {
 
     public void actualizarComputadora() {
         Scanner scanner = new Scanner(System.in);
-
+    
         System.out.print("Ingrese el ID de la computadora a actualizar: ");
         int ID_Computadora = scanner.nextInt();
         scanner.nextLine();
-
-        System.out.println("Ingrese el nuevo estado de la computadora: ");
-        System.out.println("0. Disponible");
-        System.out.println("1. Ocupado");
-        System.out.println("2. Fuera de servicio");
+    
+        System.out.println("Seleccione el nuevo estado de la computadora:");
+        System.out.println("0 - Disponible");
+        System.out.println("1 - Ocupado");
+        System.out.println("2 - Fuera de servicio");
+        System.out.print("Ingrese la opción (0, 1, o 2): ");
         int nuevoEstado = scanner.nextInt();
-
-        try {
-            actualizar(ID_Computadora, nuevoEstado);
-        } catch (SQLException e) {
-            System.out.println("Error al actualizar la computadora: " + e.getMessage());
+    
+        if (nuevoEstado >= 0 && nuevoEstado <= 2) {
+            try {
+                actualizar(ID_Computadora, nuevoEstado);
+            } catch (SQLException e) {
+                System.out.println("Error al actualizar la computadora: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Opción no válida. Intente nuevamente con 0, 1 o 2.");
         }
-
+    
         scanner.close();
     }
 
