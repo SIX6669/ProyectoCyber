@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ab8b3eb-917d-48ac-b769-93e3106984c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ProyectoCyber.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoCyber.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_9_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BD/util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BD/util/credenciales.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/credenciales.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/AdministradorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuIngreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuIngreso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuPrincipal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,19 +43,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Nico1",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Nebularmess/Documents/TUP/ProgII/TPI/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Nico1&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Nebularmess/Documents/TUP/ProgII/TPI/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="vista.MenuPrincipal" />
@@ -76,5 +76,8 @@
       <updated>1731183114040</updated>
     </task>
     <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProyectoCyber$DBConnection.ic" NAME="DBConnection Coverage Results" MODIFIED="1731154149162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

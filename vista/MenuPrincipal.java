@@ -7,6 +7,5 @@ import static BD.util.DBConnection.setConnection;
 public class MenuPrincipal {
     public static void main(String[] args) throws SQLException {
         MenuIngreso m = new MenuIngreso();
-        m.MenuLogueado();
     }
 }
