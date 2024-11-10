@@ -53,7 +53,7 @@ public class Cliente {
         return ID_Usuario;
     }
 
-    public void setID_Usuario(int nroUsuario) {
+    public void setID_Usuario(int ID_Usuario) {
         this.ID_Usuario = ID_Usuario;
     }
 

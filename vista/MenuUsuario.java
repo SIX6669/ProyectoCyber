@@ -2,24 +2,32 @@ package vista;
 
 import controlador.ClienteController;
 import modelo.Administrador;
+import modelo.Cliente;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MenuUsuario  {
     private Administrador a = new Administrador();
+    private Cliente cl;
     private ClienteController c = new ClienteController();
     private int tipoUsuario;
     private Scanner sc = new Scanner(System.in);
     private static boolean ejecutar = true;
 
-    public MenuUsuario(String usuario, String clave) {
-        this.a.usuario = usuario;
-        this.a.clave = clave;
+    public MenuUsuario(Cliente cl) {
+        this.cl = new Cliente();
+        this.cl.setID_Usuario(cl.getID_Usuario());
+        this.cl.setNombre(cl.getNombre());
+        this.cl.setApellido(cl.getApellido());
+        this.cl.setTelefono(cl.getTelefono());
+        this.cl.setUsuario(cl.getUsuario());
+        this.cl.setClave(cl.getClave());
+        System.out.println(cl.getApellido());
     }
 
+
     public void MenuLogueado() {
-        System.out.println("Bienvenido " + a.usuario);
         while (ejecutar) {
             System.out.println("\n=== MENÚ USUARIOS ===");
             System.out.println("1. Ver detalle de su cuenta");
@@ -33,7 +41,7 @@ public class MenuUsuario  {
             try {
                 switch (opcion) {
                     case 1:
-                        c.mostrarInfoUsuario(1);
+                        c.mostrarInfoUsuario(cl.getID_Usuario());
                         break;
                     case 2:
                         c.modificarUsuario();
