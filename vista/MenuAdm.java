@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class MenuAdm {
     private Administrador a = new Administrador();
     private ClienteController c = new ClienteController();
+    AdministradorController ac = new AdministradorController();
     private int tipoUsuario;
     private Scanner sc = new Scanner(System.in);
     private static boolean ejecutar = true;
@@ -39,7 +40,7 @@ public class MenuAdm {
             try {
                 switch (opcion) {
                     case 1:
-                        ; //no hay metodo read en administrador
+                        ac.seleccAdminLegajo(12);
                         break;
                     case 2:
                         c.modificarUsuario();
