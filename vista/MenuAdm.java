@@ -69,6 +69,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager{
                         System.out.println("Opción no válida. Por favor, intente nuevamente.");
                         break;
                 }
+                
             } catch (SQLException e) {
                 System.err.println("Error SQL: " + e.getMessage());
                 e.printStackTrace();
