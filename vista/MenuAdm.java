@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MenuAdm implements MenuAdmCliente{
+public class MenuAdm implements MenuAdmCliente, MenuAdmManager{
     private Administrador a = new Administrador();
     private ClienteController c = new ClienteController();
     AdministradorController ac = new AdministradorController();
@@ -46,162 +46,15 @@ public class MenuAdm implements MenuAdmCliente{
                         ac.seleccAdminLegajo(12);//id que busca esta fijo hay que dinamizarlo una vez que inicie sesion con un usuario real
                         break;
                     case 2:
-                        System.out.println("\n=== MODIFICAR DATOS DE ADMINISTRADOR ===");
-                        Administrador adminModificar = new Administrador();
-
-                        System.out.println("Ingrese el número de legajo del administrador a modificar:");
-                        int nroLegajo = sc.nextInt();
-                        sc.nextLine();
-                        adminModificar.setNroLegajo(nroLegajo);
-
-                        System.out.println("Deje en blanco los campos que no desea modificar (presione Enter)");
-
-                        System.out.println("Nuevo nombre :");
-                        String nuevoNombre = sc.nextLine().trim();
-                        if (!nuevoNombre.isEmpty()) {
-                            adminModificar.setNombre(nuevoNombre);
-                        }
-
-                        System.out.println("Nuevo apellido:");
-                        String nuevoApellido = sc.nextLine().trim();
-                        if (!nuevoApellido.isEmpty()) {
-                            adminModificar.setApellido(nuevoApellido);
-                        }
-
-                        System.out.println("Nuevo usuario :");
-                        String nuevoUsuario = sc.nextLine().trim();
-                        if (!nuevoUsuario.isEmpty()) {
-                            adminModificar.setUsuario(nuevoUsuario);
-                        }
-
-                        System.out.println("Nueva clave :");
-                        String nuevaClave = sc.nextLine().trim();
-                        if (!nuevaClave.isEmpty()) {
-                            adminModificar.setClave(nuevaClave);
-                        }
-
-                        try {
-                            boolean actualizado = ac.cambiar(adminModificar);
-
-                            if (actualizado) {
-                                System.out.println("Datos actualizados correctamente.");
-                            } else {
-                                System.out.println("No se pudo actualizar los datos. Por favor, intente nuevamente.");
-                            }
-                        } catch (SQLException e) {
-                            System.err.println("Error al actualizar los datos: " + e.getMessage());
-                            e.printStackTrace();
-                        }
-                        break;
+                       modificarDatos(sc, ac);
                     case 3:
-                        AdministradorController adminController = new AdministradorController();
-                        try {
-                            ArrayList<Administrador> listaAdmins = adminController.seleccTodosAdmin();
-                            if (listaAdmins.isEmpty()) {
-                                System.out.println("No hay administradores registrados en el sistema.");
-                            } else {
-                                System.out.println("\n=== LISTA DE ADMINISTRADORES ===");
-                                System.out.println("Nro Legajo\tUsuario\t\tNombre\t\tApellido");
-                                System.out.println("--------------------------------------------------");
-                                for (Administrador admin : listaAdmins) {
-                                    System.out.printf("%-12d%-16s%-16s%s%n",
-                                            admin.getNroLegajo(),
-                                            admin.getUsuario(),
-                                            admin.getNombre(),
-                                            admin.getApellido()
-                                    );
-                                }
-                                System.out.println("\nTotal de administradores: " + listaAdmins.size());
-                            }
-                        } catch (SQLException e) {
-                            System.err.println("Error al obtener la lista de administradores: " + e.getMessage());
-                            e.printStackTrace();
-                        }
-                        break;
+                      mostrarAdmins();
                     case 4:
-                        System.out.println("\n=== CREAR NUEVO ADMINISTRADOR ===");
-                        AdministradorController adminC = new AdministradorController();
-                        Administrador nuevoAdmin = new Administrador();
-
-                        sc.nextLine();
-
-                        try {
-                            System.out.println("Ingrese el número de legajo:");
-                            while (!sc.hasNextInt()) {
-                                System.out.println("Por favor, ingrese un número de legajo válido:");
-                                sc.next();
-                            }
-                            nroLegajo = sc.nextInt();
-                            sc.nextLine();
-                            nuevoAdmin.setNroLegajo(nroLegajo);
-
-                            System.out.println("Ingrese el nombre del administrador:");
-                            String nombre = sc.nextLine().trim();
-                            while (nombre.isEmpty()) {
-                                System.out.println("El nombre no puede estar vacío. Por favor, ingrese un nombre:");
-                                nombre = sc.nextLine().trim();
-                            }
-                            nuevoAdmin.setNombre(nombre);
-
-                            System.out.println("Ingrese el apellido del administrador:");
-                            String apellido = sc.nextLine().trim();
-                            while (apellido.isEmpty()) {
-                                System.out.println("El apellido no puede estar vacío. Por favor, ingrese un apellido:");
-                                apellido = sc.nextLine().trim();
-                            }
-                            nuevoAdmin.setApellido(apellido);
-
-                            System.out.println("Ingrese el nombre de usuario:");
-                            String usuario = sc.nextLine().trim();
-                            while (usuario.isEmpty()) {
-                                System.out.println("El usuario no puede estar vacío. Por favor, ingrese un usuario:");
-                                usuario = sc.nextLine().trim();
-                            }
-                            nuevoAdmin.setUsuario(usuario);
-
-                            System.out.println("Ingrese la clave:");
-                            String clave = sc.nextLine().trim();
-                            while (clave.isEmpty()) {
-                                System.out.println("La clave no puede estar vacía. Por favor, ingrese una clave:");
-                                clave = sc.nextLine().trim();
-                            }
-                            nuevoAdmin.setClave(clave);
-
-                            try {
-                                adminC.crearAdmin(nuevoAdmin);
-                                System.out.println("Administrador creado exitosamente.");
-                            } catch (SQLException e) {
-                                System.err.println("Error al crear el administrador: " + e.getMessage());
-                                if (e.getMessage().contains("duplicate")) {
-                                    System.out.println("Ya existe un administrador con ese número de legajo o usuario.");
-                                }
-                                e.printStackTrace();
-                            }
-                        } catch (Exception e) {
-                            System.err.println("Error inesperado: " + e.getMessage());
-                            e.printStackTrace();
-                        }
-                        break;
+                       crearAdmin(sc);
                     case 5:
-                        System.out.println("Ingrese el número de legajo del administrador a borrar:");
-                        nroLegajo = sc.nextInt();
-                        sc.nextLine(); // Limpiar el buffer después de nextInt()
-
-                        try {
-                            boolean resultado = ac.borrarAdmin(nroLegajo);
-                            if (resultado) {
-                                System.out.println("El administrador con número de legajo " + nroLegajo + " ha sido borrado exitosamente.");
-                            } else {
-                                System.out.println("No se encontró ningún administrador con el número de legajo " + nroLegajo);
-                            }
-                        } catch (SQLException e) {
-                            System.err.println("Error SQL al borrar el administrador: " + e.getMessage());
-                            e.printStackTrace();
-                        }
-                        break;
+                        eliminarAdmin(sc, ac);
                     case 6:
                         crearUsuario(sc);
-
                     case 7:
                         mostrarUsuarios();
                     case 8:
