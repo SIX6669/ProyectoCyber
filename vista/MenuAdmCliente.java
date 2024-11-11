@@ -127,7 +127,7 @@ public interface MenuAdmCliente {
         ClienteController cliente = new ClienteController();
 
         System.out.println("\n--- Modificar Usuario ---");
-
+        scanner.nextLine();
         System.out.print("Ingrese el nuevo nombre: ");
         String nombre = scanner.nextLine();
 
@@ -135,12 +135,12 @@ public interface MenuAdmCliente {
         String apellido = scanner.nextLine();
 
         System.out.print("Ingrese el nuevo teléfono: ");
-        String telefono;
-        while (!scanner.hasNextInt()) {
-            System.out.println("Por favor, ingrese un número de teléfono válido:");
-            scanner.next();
+        String telefono = scanner.nextLine().trim();
+
+        while (telefono.isEmpty() || !telefono.matches("[0-9]+")) {
+            System.out.println("Por favor, ingrese un número de teléfono válido (solo dígitos):");
+            telefono = scanner.nextLine().trim();
         }
-        telefono = scanner.nextLine();
 
         try {
             cliente.modificarUsuario(ID_Usuario, nombre, apellido, telefono);

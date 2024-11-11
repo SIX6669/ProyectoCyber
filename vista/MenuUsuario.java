@@ -7,7 +7,7 @@ import modelo.Cliente;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class MenuUsuario  {
+public class MenuUsuario implements MenuAdmCliente {
     private Administrador a = new Administrador();
     private Cliente cl;
     private ClienteController c = new ClienteController();
@@ -31,6 +31,7 @@ public class MenuUsuario  {
             System.out.println("1. Ver detalle de su cuenta");
             System.out.println("2. Modificar sus datos");
             System.out.println("3. Realizar compra");
+            System.out.println("4. Utilizar computadora");
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
 
@@ -41,9 +42,13 @@ public class MenuUsuario  {
                         c.mostrarInfoUsuario(cl.getID_Usuario());
                         break;
                     case 2:
-                    
+                        modificarUsuario(cl.getID_Usuario(), sc);
                         break;
                     case 3:
+
+                        break;
+                    case 4:
+
                         break;
                     case 5:
                         ejecutar = false;

@@ -154,13 +154,7 @@ public class ClienteController {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     Cliente cliente = new Cliente();
-                    int idUsuario = rs.getInt("ID_Usuario");
-                    System.out.println("ID_Usuario desde BD: " + idUsuario);
-
-                    cliente.setID_Usuario(idUsuario);
-
-                    // Verificamos el valor después de la asignación
-                    System.out.println("ID_Usuario en objeto: " + cliente.getID_Usuario());
+                    cliente.setID_Usuario(rs.getInt("ID_Usuario"));
                     cliente.setNombre(rs.getString("Nombre"));
                     cliente.setApellido(rs.getString("Apellido"));
                     cliente.setTelefono(rs.getString("Telefono"));
