@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.AdministradorController;
 import controlador.ClienteController;
 import modelo.Administrador;
 import modelo.Cliente;
@@ -12,6 +13,7 @@ import static BD.util.DBConnection.setConnection;
 
 public class MenuIngreso {
     private Administrador a = new Administrador();
+    private AdministradorController ac = new AdministradorController();
     private Cliente cl = new Cliente();
     private ClienteController c = new ClienteController();
     private int tipoUsuario;
@@ -73,7 +75,7 @@ public class MenuIngreso {
             sc.next();
         }
         nuevoCliente.setTelefono(sc.nextInt());
-        sc.nextLine(); // Limpiar el buffer después de nextInt()
+        sc.nextLine();
 
         System.out.println("Ingrese su usuario:");
         nuevoCliente.setUsuario(sc.nextLine());
@@ -129,14 +131,32 @@ public class MenuIngreso {
         }
     }
 
-    private void ingresarComoAdministrador() {
-        System.out.println("Ingrese su usuario");
-        this.a.usuario = sc.nextLine();
-        System.out.println("Ingrese su clave");
-        this.a.clave = sc.nextLine();
-        MenuAdm m = new MenuAdm(a.getUsuario(), a.getClave());
+    private void ingresarComoAdministrador() throws SQLException {
+        do {
+            System.out.println("Ingrese su usuario");
+            this.a.setUsuario(sc.nextLine());
+            System.out.println("Ingrese su clave");
+            this.a.setClave(sc.nextLine());
+            validarAdministrador(a.getUsuario(), a.getClave());
+        } while (bandera);
+        System.out.println("Bienvenido: " + a.getNombre());
+        MenuAdm m = new MenuAdm(a);
         m.MenuLogueado();
-        // Aquí podrías manejar la lógica para el administrador
+    }
+
+    private void validarAdministrador(String usuario, String clave) throws SQLException {
+        Administrador admin = ac.autenticarAdmin(usuario, clave);
+        if (admin != null) {
+            a.setNombre(admin.getNombre());
+            a.setApellido(admin.getApellido());
+            a.setNroLegajo(admin.getNroLegajo());
+            a.setUsuario(admin.getUsuario());
+            a.setClave(admin.getClave());
+            bandera = false;
+        } else {
+            System.out.println("Reintente nuevamente, credenciales erroneas");
+            bandera = true;
+        }
     }
 }
 

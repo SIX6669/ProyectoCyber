@@ -17,9 +17,13 @@ public class MenuAdm {
     private Scanner sc = new Scanner(System.in);
     private static boolean ejecutar = true;
 
-    public MenuAdm(String usuario, String clave) {
-        this.a.usuario = usuario;
-        this.a.clave = clave;
+    public MenuAdm(Administrador a) {
+        this.a.setNroLegajo(a.getNroLegajo());
+        this.a.setNombre(a.getNombre());
+        this.a.setApellido(a.getApellido());
+        this.a.setUsuario(a.getUsuario());
+        this.a.setClave(a.getClave());
+
     }
 
     public void MenuLogueado() {
@@ -50,7 +54,7 @@ public class MenuAdm {
 
                         System.out.println("Ingrese el número de legajo del administrador a modificar:");
                         int nroLegajo = sc.nextInt();
-                        sc.nextLine();
+                        sc.nextLine(); // Limpiar el buffer después de nextInt()
                         adminModificar.setNroLegajo(nroLegajo);
 
                         System.out.println("Deje en blanco los campos que no desea modificar (presione Enter)");

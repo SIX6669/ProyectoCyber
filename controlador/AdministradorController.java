@@ -122,6 +122,27 @@ public class AdministradorController {
         }
         return filaBorrada;
     }
+    public Administrador autenticarAdmin(String usuario, String clave) throws SQLException {
+        String sql = "SELECT NroLegajo, Nombre, Apellido, usuario, clave FROM Admin WHERE usuario = ? AND clave = ?";
 
+        try (Connection connection = setConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, usuario);
+            ps.setString(2, clave);
 
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Administrador admin = new Administrador();
+                    admin.setNroLegajo(rs.getInt("NroLegajo"));
+                    admin.setNombre(rs.getString("Nombre"));
+                    admin.setApellido(rs.getString("Apellido"));
+                    admin.setUsuario(rs.getString("usuario"));
+                    admin.setClave(rs.getString("clave"));
+                    return admin;
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
 }
