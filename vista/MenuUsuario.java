@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ClienteController;
+import controlador.ComputadoraController;
 import modelo.Administrador;
 import modelo.Cliente;
 
@@ -11,6 +12,7 @@ public class MenuUsuario implements MenuAdmCliente {
     private Administrador a = new Administrador();
     private Cliente cl;
     private ClienteController c = new ClienteController();
+    private ComputadoraController com = new ComputadoraController();
     private Scanner sc = new Scanner(System.in);
     private static boolean ejecutar = true;
 
@@ -22,6 +24,7 @@ public class MenuUsuario implements MenuAdmCliente {
         this.cl.setTelefono(cl.getTelefono());
         this.cl.setUsuario(cl.getUsuario());
         this.cl.setClave(cl.getClave());
+        this.cl.setTiempoAdquirido(cl.getTiempoAdquirido());
     }
 
 
@@ -46,9 +49,10 @@ public class MenuUsuario implements MenuAdmCliente {
                         break;
                     case 3:
 
-                        break;
                     case 4:
-
+                        com.mostrarComputadoras();
+                        com.actualizarComputadora(cl.getID_Usuario());
+                        c.actualizarTiempoComputadora(cl.getID_Usuario());
                         break;
                     case 5:
                         ejecutar = false;

@@ -2,6 +2,8 @@ package controlador;
 
 import BD.util.DBConnection;
 import modelo.Cliente;
+
+import java.time.LocalTime;
 import java.util.Scanner;
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class ClienteController {
     private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido,Telefono) VALUES (?, ?, ?)";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Cliente";
     private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE ID_Usuario = ?";
+    private static final String UPDATE_TIEMPO_SQL = "UPDATE Cliente SET Tiempo = ? WHERE ID_Usuario = ?";
 
     public void crearUsuario(Cliente cliente) throws SQLException {
         try(Connection connection = setConnection();
@@ -144,7 +147,7 @@ public class ClienteController {
     }
 
     public Cliente autenticarUsuario(String usuario, String clave) throws SQLException {
-        String sql = "SELECT ID_Usuario, Nombre, Apellido, Telefono, usuario, clave FROM Cliente WHERE usuario = ? AND clave = ?";
+        String sql = "SELECT ID_Usuario, Nombre, Apellido, Telefono, Tiempo, usuario, clave FROM Cliente WHERE usuario = ? AND clave = ?";
 
         try (Connection connection = setConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -160,6 +163,11 @@ public class ClienteController {
                     cliente.setTelefono(rs.getString("Telefono"));
                     cliente.setUsuario(rs.getString("usuario"));
                     cliente.setClave(rs.getString("clave"));
+
+                    // Obtener el tiempo como java.sql.Time
+                    Time tiempo = rs.getTime("Tiempo");
+                    cliente.setTiempoAdquirido(tiempo);
+
                     return cliente;
                 } else {
                     return null;
@@ -167,6 +175,8 @@ public class ClienteController {
             }
         }
     }
+
+
 
     public void eliminarUsuario(int idUsuario) throws SQLException {
         try (Connection connection = setConnection();
@@ -183,5 +193,60 @@ public class ClienteController {
             throw e;
         }
     }
+
+    public void actualizarTiempoComputadora(int ID_Usuario) throws SQLException {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Seleccione el tiempo de uso de la computadora:");
+        System.out.println("1. 30 minutos");
+        System.out.println("2. 1 hora");
+        int opcion = sc.nextInt();
+        sc.nextLine(); // Limpiar el buffer después de nextInt()
+
+        int tiempoUso = (opcion == 1) ? 30 : 60;
+
+        try (Connection connection = setConnection();
+             PreparedStatement selectStmt = connection.prepareStatement("SELECT Tiempo FROM Cliente WHERE ID_Usuario = ?");
+             PreparedStatement updateStmt = connection.prepareStatement("UPDATE Cliente SET Tiempo = ? WHERE ID_Usuario = ?");
+             PreparedStatement resetStmt = connection.prepareStatement("UPDATE computadoras SET estado = 0, ID_Usuario = NULL WHERE ID_Usuario = ?")) {
+
+            // Verificar tiempo adquirido actual
+            selectStmt.setInt(1, ID_Usuario);
+            ResultSet rs = selectStmt.executeQuery();
+            if (rs.next()) {
+                Time tiempoAdquirido = rs.getTime("Tiempo");
+                int tiempoAdquiridoMinutos = tiempoAdquirido.toLocalTime().toSecondOfDay() / 60;
+
+                if (tiempoAdquiridoMinutos >= tiempoUso) {
+                    int nuevoTiempoMinutos = tiempoAdquiridoMinutos - tiempoUso;
+
+                    // Convertir minutos a formato TIME para la base de datos
+                    Time tiempoActualizado = Time.valueOf(LocalTime.ofSecondOfDay(nuevoTiempoMinutos * 60));
+
+                    // Actualizar tiempo en la base de datos
+                    updateStmt.setTime(1, tiempoActualizado);
+                    updateStmt.setInt(2, ID_Usuario);
+                    updateStmt.executeUpdate();
+
+                    System.out.println("Su tiempo ha finalizado y la computadora se ha liberado. Tiempo actualizado. Tiempo restante: " + nuevoTiempoMinutos + " minutos.");
+
+                    // Actualizar estado de la computadora a 0 (disponible)
+                    resetStmt.setInt(1, ID_Usuario);
+                    resetStmt.executeUpdate();
+
+                    System.out.println("La computadora que utilizó ahora está disponible nuevamente.");
+                } else {
+                    System.out.println("No tiene suficiente tiempo, acredite más tiempo.");
+                }
+            } else {
+                System.out.println("No se encontró el usuario con ID: " + ID_Usuario);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar el tiempo: " + e.getMessage());
+            throw e;
+        }
+    }
+
+
 
 }

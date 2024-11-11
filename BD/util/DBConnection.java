@@ -12,7 +12,7 @@ public class DBConnection {
 
 
     public static String[] getDatos(){
-        String path = "D:/Datos Usuario/Documents/GitHub/ProyectoCyber/BD/util/credenciales.txt";
+        String path = "C:/Users/Nebularmess/Documents/ProyectoCyber/BD/util/credenciales.txt";
 
         String[] datos = new String[3];
 
