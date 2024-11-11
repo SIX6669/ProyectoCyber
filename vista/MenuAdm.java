@@ -46,7 +46,7 @@ public class MenuAdm {
             try {
                 switch (opcion) {
                     case 1:
-                        ac.seleccAdminLegajo(12);//id que busca esta fijo hay que dinamizarlo una vez que inicie sesion con un usuario real
+                        ac.seleccAdminLegajo(a.getNroLegajo());//id que busca esta fijo hay que dinamizarlo una vez que inicie sesion con un usuario real
                         break;
                     case 2:
                         System.out.println("\n=== MODIFICAR DATOS DE ADMINISTRADOR ===");
