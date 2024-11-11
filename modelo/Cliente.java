@@ -39,6 +39,14 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public Cliente(int ID_Usuario, String nombre, String apellido, String telefono, Time tiempo) {
+        this.ID_Usuario = ID_Usuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.Tiempo = Tiempo;
+    }
+
     public int getID_Usuario() {
         return ID_Usuario;
     }

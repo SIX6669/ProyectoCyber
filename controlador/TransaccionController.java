@@ -28,33 +28,15 @@ public class TransaccionController {
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
+                int ID_Transaccion = rs.getInt("ID_Transaccion");
                 Time tiempoComprado = rs.getTime("TiempoComprado");
                 double total = rs.getDouble("total");
                 int ID_Usuario = rs.getInt("ID_Usuario");
-                Transaccion transaccion = new Transaccion(tiempoComprado, total, ID_Usuario);
+                Transaccion transaccion = new Transaccion(ID_Transaccion, tiempoComprado, total, ID_Usuario);
                 transacciones.add(transaccion);
             }
         }
         return transacciones;
-    }
-
-    public void verTransacciones() {
-        try {
-            List<Transaccion> transacciones = obtener();
-            if (transacciones.isEmpty()) {
-                System.out.println("No se encontraron transacciones.");
-            } else {
-                System.out.println("Lista de transacciones:");
-                for (Transaccion transaccion : transacciones) {
-                    System.out.println("ID: " + transaccion.getID_Transaccion() +
-                            ", Tiempo Comprado: " + transaccion.getTiempoComprado() +
-                            ", Total: $" + transaccion.getTotal() +
-                            ", ID Usuario: " + transaccion.getID_Usuario());
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al obtener las transacciones: " + e.getMessage());
-        }
     }
 
     public Transaccion obtenerPorId(int idTransaccion) throws SQLException {

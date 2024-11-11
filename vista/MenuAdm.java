@@ -1,23 +1,19 @@
 package vista;
 
-import controlador.AdministradorController;
-import controlador.ClienteController;
-import modelo.Administrador;
-import modelo.Cliente;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
+import controlador.*;
+import modelo.*;
+import java.sql.*;
 import java.util.Scanner;
 
-public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputadora {
-    private Administrador a = new Administrador();
-    private ClienteController c = new ClienteController();
-    AdministradorController ac = new AdministradorController();
-    private int nroLegajo;
-    private Scanner sc = new Scanner(System.in);
-    private static boolean ejecutar = true;
+public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputadora, MenuUsuarioTransaccion {
+    public Administrador a = new Administrador();
+    public ClienteController c = new ClienteController();
+    public AdministradorController ac = new AdministradorController();
+    public TransaccionController transaccionController = new TransaccionController();
+    public int nroLegajo;
+    public Scanner sc = new Scanner(System.in);
+    public static boolean ejecutar = true;
     
-
     public MenuAdm(Administrador a) {
         this.a.setNroLegajo(a.getNroLegajo());
         this.a.setNombre(a.getNombre());
@@ -28,9 +24,9 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
     }
 
     public MenuAdm(String usuario, String clave) throws SQLException {
-        this.a = ac.autenticarAdmin(usuario, clave); // Método de autenticación que devuelve un Administrador
+        this.a = ac.autenticarAdmin(usuario, clave); 
         if (a != null) {
-            this.nroLegajo = a.getNroLegajo(); // Obtiene el ID del administrador autenticado
+            this.nroLegajo = a.getNroLegajo();
             System.out.println("Bienvenido " + a.getUsuario());
         } else {
             System.out.println("Error: usuario o clave incorrectos.");
@@ -38,72 +34,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
         }
     }
 
-    public MenuAdm(){
-    }
-
-    /*public void MenuLogueado() {
-        System.out.println("Bienvenido " + a.usuario);
-        while (ejecutar) {
-            System.out.println("\n=== MENÚ ADMINISTRADOR ===");
-            System.out.println("1. Ver detalle de su cuenta");
-            System.out.println("2. Modificar sus datos");
-            System.out.println("3. Listar Administradores");
-            System.out.println("4. Crear nuevo Admin");
-            System.out.println("5. Eliminar admin");
-            System.out.println("6. Crear nuevo cliente");
-            System.out.println("7. listar Clientes");
-            System.out.println("8. Buscar cliente por ID");
-            System.out.println("9. Eliminar cliente");
-            System.out.println("10. Modificar cliente");
-            System.out.println("11. Salir");
-            System.out.print("Seleccione una opción: ");
-
-            int opcion = sc.nextInt();
-            try {
-                switch (opcion) {
-                    case 1:
-                        ac.seleccAdminLegajo(12);//id que busca esta fijo hay que dinamizarlo una vez que inicie sesion con un usuario real
-                        break;
-                    case 2:
-                       modificarDatos(sc, ac);
-                       break;
-                    case 3:
-                      mostrarAdmins();
-                      break;
-                    case 4:
-                       crearAdmin(sc);
-                       break;
-                    case 5:
-                        eliminarAdmin(sc, ac);
-                        break;
-                    case 6:
-                        crearUsuario(sc);
-                        break;
-                    case 7:
-                        mostrarUsuarios();
-                        break;
-                    case 8:
-                       mostrarUsuarioID(sc);
-                       break;
-                    case 9:
-                        eliminarUsuario(sc, c);
-                        break;
-                    case 10:
-
-                    case 11:
-                        ejecutar = false;
-                        System.out.println("¡Hasta pronto!");
-                        break;
-                    default:
-                        System.out.println("Opción no válida. Por favor, intente nuevamente.");
-                        break;
-                }
-            } catch (SQLException e) {
-                System.err.println("Error SQL: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-    } */
+    public MenuAdm() {}
 
     public void MenuLogueado() throws SQLException {
         System.out.println("Bienvenido " + a.usuario);
@@ -130,6 +61,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
                     menuAdminComputadoras();
                 break;
                 case 4:
+                    verTransacciones(transaccionController);
                 break;
                 case 5:
                     ejecutar = false;
@@ -142,7 +74,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
         }
     }
 
-    private void menuAdminAdmin() throws SQLException {
+    public void menuAdminAdmin() throws SQLException {
         System.out.println("\n=== MENÚ PARA ADMINISTRADORES ===");
         System.out.println("1. Ver detalles de su cuenta");
         System.out.println("2. Modificar datos");
@@ -177,7 +109,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
         }
     }
 
-    private void menuAdminCliente() throws SQLException {
+    public void menuAdminCliente() throws SQLException {
         System.out.println("\n=== MENÚ PARA ADMINISTRAR CLIENTES ===");
         System.out.println("1. Crear nuevo cliente");
         System.out.println("2. Ver Clientes");
@@ -212,7 +144,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
         }
     }
 
-    private void menuAdminComputadoras() throws SQLException {
+    public void menuAdminComputadoras() throws SQLException {
         System.out.println("\n=== MENÚ PARA ADMINISTRAR COMPUTADORAS ===");
         System.out.println("1. Modificar Computadora");
         System.out.println("2. Listar Computadoras");

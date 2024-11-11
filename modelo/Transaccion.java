@@ -14,6 +14,13 @@ public class Transaccion {
         this.ID_Usuario = ID_Usuario;
     }
 
+    public Transaccion(int ID_Transaccion, Time TiempoComprado, double total, int ID_Usuario) {
+        this.ID_Transaccion = ID_Transaccion;
+        this.TiempoComprado = TiempoComprado;
+        this.total = total;
+        this.ID_Usuario = ID_Usuario;
+    }
+
     public int getID_Transaccion() {
         return ID_Transaccion;
     }

@@ -2,10 +2,8 @@ package vista;
 
 import controlador.*;
 import modelo.*;
-
 import java.util.Scanner;
 import java.sql.*;
-
 import static BD.util.DBConnection.setConnection;
 
 public class MenuIngreso {
@@ -143,18 +141,6 @@ public class MenuIngreso {
         }
     }
 
-    /* private void ingresarComoAdministrador() throws SQLException {
-        do {
-            System.out.println("Ingrese su usuario");
-            this.a.setUsuario(sc.nextLine());
-            System.out.println("Ingrese su clave");
-            this.a.setClave(sc.nextLine());
-            validarAdministrador(a.getUsuario(), a.getClave());
-        } while (bandera);
-        MenuAdm m = new MenuAdm(a);
-        m.MenuLogueado();
-    } /* */
-
     private void iniciarSesionAdmin() throws SQLException {
         boolean salir = false;
 
@@ -199,33 +185,33 @@ public class MenuIngreso {
             m.MenuLogueado();
     }
 
-private void registrarNuevoAdministrador() {
-    System.out.println("\n=== Registro de Nuevo Administrador ===");
-    Administrador nuevoAdmin = new Administrador();
+    private void registrarNuevoAdministrador() {
+        System.out.println("\n=== Registro de Nuevo Administrador ===");
+        Administrador nuevoAdmin = new Administrador();
 
-    System.out.print("Ingrese un nombre de usuario: ");
-    nuevoAdmin.setUsuario(sc.nextLine().trim());
+        System.out.print("Ingrese un nombre de usuario: ");
+        nuevoAdmin.setUsuario(sc.nextLine().trim());
 
-    System.out.print("Ingrese su nombre: ");
-    nuevoAdmin.setNombre(sc.nextLine().trim());
+        System.out.print("Ingrese su nombre: ");
+        nuevoAdmin.setNombre(sc.nextLine().trim());
 
-    System.out.print("Ingrese su apellido: ");
-    nuevoAdmin.setApellido(sc.nextLine().trim());
+        System.out.print("Ingrese su apellido: ");
+        nuevoAdmin.setApellido(sc.nextLine().trim());
 
-    System.out.print("Ingrese una clave: ");
-    nuevoAdmin.setClave(sc.nextLine().trim());
+        System.out.print("Ingrese una clave: ");
+        nuevoAdmin.setClave(sc.nextLine().trim());
 
-    AdministradorController adminC = new AdministradorController();
-    try {
-        adminC.crearAdmin(nuevoAdmin);
-        System.out.println("Administrador registrado exitosamente. Ahora puede iniciar sesión.");
-    } catch (SQLException e) {
-        System.err.println("Error al registrar el administrador: " + e.getMessage());
-        if (e.getMessage().contains("duplicate")) {
-            System.out.println("El nombre de usuario ya está en uso. Intente con otro.");
+        AdministradorController adminC = new AdministradorController();
+        try {
+            adminC.crearAdmin(nuevoAdmin);
+            System.out.println("Administrador registrado exitosamente. Ahora puede iniciar sesión.");
+        } catch (SQLException e) {
+            System.err.println("Error al registrar el administrador: " + e.getMessage());
+            if (e.getMessage().contains("duplicate")) {
+                System.out.println("El nombre de usuario ya está en uso. Intente con otro.");
+            }
         }
     }
-}
 
     private void validarAdministrador(String usuario, String clave) throws SQLException {
         Administrador admin = ac.autenticarAdmin(usuario, clave);

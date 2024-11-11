@@ -24,6 +24,7 @@ public class MenuUsuario implements MenuAdmCliente, MenuUsuarioTransaccion {
         this.cl.setTelefono(cl.getTelefono());
         this.cl.setUsuario(cl.getUsuario());
         this.cl.setClave(cl.getClave());
+        this.cl.setTiempo(cl.getTiempo());
     }
 
 

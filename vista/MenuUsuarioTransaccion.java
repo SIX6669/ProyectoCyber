@@ -1,6 +1,7 @@
 package vista;
 
 import java.sql.*;
+import java.util.List;
 import java.util.Scanner;
 
 import controlador.*;
@@ -55,5 +56,24 @@ public interface MenuUsuarioTransaccion {
         } catch (SQLException e) {
             System.out.println("Error al crear la transacción: " + e.getMessage());
         } 
+    }
+
+    default void verTransacciones(TransaccionController transaccionController) {
+        try {
+            List<Transaccion> transacciones = transaccionController.obtener();
+            if (transacciones.isEmpty()) {
+                System.out.println("No se encontraron transacciones.");
+            } else {
+                System.out.println("Lista de transacciones:");
+                for (Transaccion transaccion : transacciones) {
+                    System.out.println("ID: " + transaccion.getID_Transaccion() +
+                            ", Tiempo Comprado: " + transaccion.getTiempoComprado() +
+                            ", Total: $" + transaccion.getTotal() +
+                            ", ID Usuario: " + transaccion.getID_Usuario());
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener las transacciones: " + e.getMessage());
+        }
     }
 }
