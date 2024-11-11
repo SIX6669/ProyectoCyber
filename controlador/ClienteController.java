@@ -18,7 +18,7 @@ public class ClienteController {
     String sql = "";
     //Este metodo es para cuando el usuario quiera ver su informacion (El usuario solo puede ver su info ver como agregar de forma dinamica el nro de usuario segun su ID)
     private static final String SELECT_USER = "SELECT ID_Usuario, Nombre, Apellido, Telefono FROM cliente WHERE ID_Usuario = ?";
-    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido,Telefono) VALUES (?, ?, ?)";
+    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido,Telefono, Usuario, Clave) VALUES (?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Cliente";
     private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE ID_Usuario = ?";
     public void crearUsuario( Cliente cliente) throws SQLException {
@@ -28,6 +28,8 @@ public class ClienteController {
             ps.setString(1,cliente.getNombre());
             ps.setString(2, cliente.getApellido());
             ps.setInt(3,cliente.getTelefono());
+            ps.setString(4, cliente.getUsuario());
+            ps.setString(5, cliente.getClave());
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
@@ -77,41 +79,50 @@ public class ClienteController {
     }
     private static final String UPDATE_USER = "UPDATE Cliente SET  Nombre = ?, Apellido = ?, Telefono = ? WHERE ID_Usuario = ?";
 
-    public void modificarUsuario() throws SQLException {
+    public void modificarUsuario(int idUsuario) throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
         try {
             System.out.println("\n--- Modificar Usuario ---");
-            System.out.print("Ingrese el ID del usuario a modificar: ");
-            int ID_Usuario = scanner.nextInt();
-            scanner.nextLine();
+
             System.out.print("Ingrese el nuevo nombre: ");
             String nombre = scanner.nextLine();
+
             System.out.print("Ingrese el nuevo apellido: ");
             String apellido = scanner.nextLine();
+
             System.out.print("Ingrese el nuevo teléfono: ");
-            int telefono = scanner.nextInt();
-            Connection connection = setConnection();
-            PreparedStatement ps = connection.prepareStatement(UPDATE_USER);
-
-            ps.setString(1, nombre);
-            ps.setString(2, apellido);
-            ps.setInt(3, telefono);
-            ps.setInt(4, ID_Usuario);
-
-            int resultado = ps.executeUpdate();
-
-            if (resultado > 0) {
-                System.out.println("Usuario modificado exitosamente!");
-            } else {
-                System.out.println("No se encontró el usuario con ID: " + ID_Usuario);
+            int telefono = 0;
+            while (!scanner.hasNextInt()) {
+                System.out.println("Por favor, ingrese un número de teléfono válido:");
+                scanner.next();
             }
+            telefono = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer después de nextInt()
 
+            Connection connection = setConnection();
+            String sql = "UPDATE Cliente SET Nombre = ?, Apellido = ?, Telefono = ? WHERE ID_Usuario = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, nombre);
+                ps.setString(2, apellido);
+                ps.setInt(3, telefono);
+                ps.setInt(4, idUsuario);
+
+                int resultado = ps.executeUpdate();
+
+                if (resultado > 0) {
+                    System.out.println("Usuario modificado exitosamente!");
+                } else {
+                    System.out.println("No se encontró el usuario con ID: " + idUsuario);
+                }
+            }
         } catch (SQLException e) {
             System.out.println("Error al modificar el usuario: " + e.getMessage());
             throw e;
         }
     }
+
     public Cliente autenticarUsuario(String usuario, String clave) throws SQLException {
         String sql = "SELECT ID_Usuario, Nombre, Apellido, Telefono, usuario, clave FROM Cliente WHERE usuario = ? AND clave = ?";
 

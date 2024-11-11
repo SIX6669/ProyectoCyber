@@ -23,7 +23,6 @@ public class MenuUsuario  {
         this.cl.setTelefono(cl.getTelefono());
         this.cl.setUsuario(cl.getUsuario());
         this.cl.setClave(cl.getClave());
-        System.out.println(cl.getApellido());
     }
 
 
@@ -44,7 +43,7 @@ public class MenuUsuario  {
                         c.mostrarInfoUsuario(cl.getID_Usuario());
                         break;
                     case 2:
-                        c.modificarUsuario();
+                        c.modificarUsuario(cl.getID_Usuario());
                         break;
                     case 3:
                         break;
