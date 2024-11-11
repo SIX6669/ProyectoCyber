@@ -76,6 +76,7 @@ public class ComputadoraController {
             }
         }
     }
+    
     public void actualizar(int ID_Computadora, int nuevoEstado, int ID_Usuario) throws SQLException {
         String sql = "UPDATE computadoras SET estado = ?, ID_Usuario = ? WHERE ID_Computadora = ?";
         try (Connection con = setConnection();

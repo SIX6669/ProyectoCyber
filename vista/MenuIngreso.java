@@ -134,7 +134,7 @@ public class MenuIngreso {
             cl.setTelefono(cliente.getTelefono());
             cl.setClave(cliente.getClave());
             cl.setUsuario(cliente.getUsuario());
-            cl.setTiempoAdquirido(cliente.getTiempoAdquirido());
+            cl.setTiempo(cliente.getTiempo());
             bandera = false;
         } else {
             System.out.println("Reintente nuevamente, credenciales erroneas");

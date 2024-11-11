@@ -45,7 +45,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
             System.out.println("2. Clientes");
             System.out.println("3. Computadoras");
             System.out.println("4. Ver transacciones");
-            System.out.println("4. Salir");
+            System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             
             int opcionPrincipal = sc.nextInt();
