@@ -18,7 +18,7 @@ public class ClienteController {
     ResultSet rs = null;
     String sql = "";
     //Este metodo es para cuando el usuario quiera ver su informacion (El usuario solo puede ver su info ver como agregar de forma dinamica el nro de usuario segun su ID)
-    private static final String SELECT_USER = "SELECT ID_Usuario, Nombre, Apellido, Telefono FROM cliente WHERE ID_Usuario = ?";
+    private static final String SELECT_USER = "SELECT ID_Usuario, Nombre, Apellido, Telefono, Tiempo FROM cliente WHERE ID_Usuario = ?";
     private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido,Telefono) VALUES (?, ?, ?)";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Cliente";
     private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE ID_Usuario = ?";
@@ -61,13 +61,16 @@ public class ClienteController {
                         rs.getInt("ID_Usuario"),
                         rs.getString("Nombre"),
                         rs.getString("Apellido"),
-                        rs.getString("Telefono")
+                        rs.getString("Telefono"),
+                        rs.getTime("Tiempo")
                 );
+                cliente.setTiempoAdquirido(rs.getTime("Tiempo"));
                 System.out.println("Información del cliente:");
                 System.out.println("Número de Usuario: " + cliente.getID_Usuario());
                 System.out.println("Nombre: " + cliente.getNombre());
                 System.out.println("Apellido: " + cliente.getApellido());
                 System.out.println("Teléfono: " + cliente.getTelefono());
+                System.out.println("Tiempo Adquirido: " + cliente.getTiempoAdquirido());
                 return cliente;
             } else {
                 System.out.println("No se encontró ningún cliente con el número de usuario: " + ID_Usuario);
@@ -78,6 +81,7 @@ public class ClienteController {
             throw e;
         }
     }
+
 
     /* public void modificarUsuario(int idUsuario) throws SQLException {
         Scanner scanner = new Scanner(System.in);

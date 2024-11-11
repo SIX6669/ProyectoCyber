@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3af7fb7-70d4-4004-a31f-a15871547a9a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ProyectoCyber.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoCyber.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BD/util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BD/util/credenciales.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/credenciales.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlador/ComputadoraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ComputadoraController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/MenuIngreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuIngreso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/MenuUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuUsuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,17 +51,6 @@
       <updated>1731336387648</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/vista/MenuUsuario.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ProyectoCyber$DBConnection.ic" NAME="DBConnection Coverage Results" MODIFIED="1731154149162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
