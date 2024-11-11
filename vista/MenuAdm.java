@@ -113,6 +113,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
             System.out.println("1. Administradores");
             System.out.println("2. Clientes");
             System.out.println("3. Computadoras");
+            System.out.println("4. Ver transacciones");
             System.out.println("4. Salir");
             System.out.print("Seleccione una opción: ");
             
@@ -129,6 +130,8 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
                     menuAdminComputadoras();
                 break;
                 case 4:
+                break;
+                case 5:
                     ejecutar = false;
                     System.out.println("¡Hasta pronto!");
                     break;
