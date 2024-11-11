@@ -112,6 +112,31 @@ public class AdministradorController {
         }
     }
 
+    public Administrador seleccAdminPorId(int idAdmin) throws SQLException {
+        String sql = "SELECT NroLegajo, usuario, nombre, apellido FROM admin WHERE NroLegajo = ?";
+        Administrador admin = null;
+    
+        try (Connection connection = setConnection(); 
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+    
+            pstmt.setInt(1, idAdmin);
+            ResultSet rs = pstmt.executeQuery();
+    
+            if (rs.next()) {
+                admin = new Administrador();
+                admin.setNroLegajo(rs.getInt("NroLegajo"));
+                admin.setUsuario(rs.getString("usuario"));
+                admin.setNombre(rs.getString("nombre"));
+                admin.setApellido(rs.getString("apellido"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener el administrador por ID: " + e.getMessage());
+            throw e;
+        }
+    
+        return admin; // Retorna null si no se encuentra el administrador
+    }
+
     public boolean borrarAdmin(int nroLegajo)throws SQLException{
         boolean filaBorrada = false;
 
@@ -123,5 +148,27 @@ public class AdministradorController {
         return filaBorrada;
     }
 
+    public Administrador autenticarAdmin(String usuario, String clave) throws SQLException {
+        String sql = "SELECT NroLegajo, Nombre, Apellido, usuario, clave FROM Admin WHERE usuario = ? AND clave = ?";
 
+        try (Connection connection = setConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, usuario);
+            ps.setString(2, clave);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Administrador admin = new Administrador();
+                    admin.setNroLegajo(rs.getInt("NroLegajo"));
+                    admin.setNombre(rs.getString("Nombre"));
+                    admin.setApellido(rs.getString("Apellido"));
+                    admin.setUsuario(rs.getString("usuario"));
+                    admin.setClave(rs.getString("clave"));
+                    return admin;
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
 }

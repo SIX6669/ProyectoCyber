@@ -3,7 +3,6 @@ package controlador;
 import BD.util.DBConnection;
 import modelo.Cliente;
 import java.util.Scanner;
-import java.sql.SQLException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -21,13 +20,14 @@ public class ClienteController {
     private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido,Telefono) VALUES (?, ?, ?)";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Cliente";
     private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE ID_Usuario = ?";
-    public void crearUsuario( Cliente cliente) throws SQLException {
+
+    public void crearUsuario(Cliente cliente) throws SQLException {
         try(Connection connection = setConnection();
             PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL)) {
             //ps.setInt(1,cliente.getID_Usuario()); lo comento pq es autoincremental
             ps.setString(1,cliente.getNombre());
             ps.setString(2, cliente.getApellido());
-            ps.setInt(3,cliente.getTelefono());
+            ps.setString(3,cliente.getTelefono());
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
@@ -42,7 +42,7 @@ public class ClienteController {
 
             while (rs.next()){
                 Cliente cliente = new Cliente(rs.getInt("ID_Usuario"),rs.getString("Nombre"),
-                        rs.getString("Apellido"), rs.getInt("Telefono"));
+                        rs.getString("Apellido"), rs.getString("Telefono"));
                 clientes.add(cliente);
             }
         }
@@ -58,7 +58,7 @@ public class ClienteController {
                         rs.getInt("ID_Usuario"),
                         rs.getString("Nombre"),
                         rs.getString("Apellido"),
-                        rs.getInt("Telefono")
+                        rs.getString("Telefono")
                 );
                 System.out.println("Información del cliente:");
                 System.out.println("Número de Usuario: " + cliente.getID_Usuario());
@@ -75,43 +75,105 @@ public class ClienteController {
             throw e;
         }
     }
-    private static final String UPDATE_USER = "UPDATE Cliente SET  Nombre = ?, Apellido = ?, Telefono = ? WHERE ID_Usuario = ?";
 
-    public void modificarUsuario() throws SQLException {
+    /* public void modificarUsuario(int idUsuario) throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
         try {
             System.out.println("\n--- Modificar Usuario ---");
-            System.out.print("Ingrese el ID del usuario a modificar: ");
-            int ID_Usuario = scanner.nextInt();
-            scanner.nextLine();
+
             System.out.print("Ingrese el nuevo nombre: ");
             String nombre = scanner.nextLine();
+
             System.out.print("Ingrese el nuevo apellido: ");
             String apellido = scanner.nextLine();
-            System.out.print("Ingrese el nuevo teléfono: ");
-            int telefono = scanner.nextInt();
-            Connection connection = setConnection();
-            PreparedStatement ps = connection.prepareStatement(UPDATE_USER);
 
+            System.out.print("Ingrese el nuevo teléfono: ");
+            int telefono = 0;
+            while (!scanner.hasNextInt()) {
+                System.out.println("Por favor, ingrese un número de teléfono válido:");
+                scanner.next();
+            }
+            telefono = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer después de nextInt()
+
+            Connection connection = setConnection();
+            String sql = "UPDATE Cliente SET Nombre = ?, Apellido = ?, Telefono = ? WHERE ID_Usuario = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, nombre);
+                ps.setString(2, apellido);
+                ps.setInt(3, telefono);
+                ps.setInt(4, idUsuario);
+
+                int resultado = ps.executeUpdate();
+
+                if (resultado > 0) {
+                    System.out.println("Usuario modificado exitosamente!");
+                } else {
+                    System.out.println("No se encontró el usuario con ID: " + idUsuario);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el usuario: " + e.getMessage());
+            throw e;
+        }
+    } /* */
+
+    public void modificarUsuario(int idUsuario, String nombre, String apellido, String telefono) throws SQLException {
+        String sql = "UPDATE Cliente SET Nombre = ?, Apellido = ?, Telefono = ? WHERE ID_Usuario = ?";
+        
+        try (Connection connection = setConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, nombre);
             ps.setString(2, apellido);
-            ps.setInt(3, telefono);
-            ps.setInt(4, ID_Usuario);
+            ps.setString(3, telefono);
+            ps.setInt(4, idUsuario);
 
             int resultado = ps.executeUpdate();
-
+            
             if (resultado > 0) {
                 System.out.println("Usuario modificado exitosamente!");
             } else {
-                System.out.println("No se encontró el usuario con ID: " + ID_Usuario);
+                System.out.println("No se encontró el usuario con ID: " + idUsuario);
             }
-
         } catch (SQLException e) {
             System.out.println("Error al modificar el usuario: " + e.getMessage());
             throw e;
         }
     }
+
+    public Cliente autenticarUsuario(String usuario, String clave) throws SQLException {
+        String sql = "SELECT ID_Usuario, Nombre, Apellido, Telefono, usuario, clave FROM Cliente WHERE usuario = ? AND clave = ?";
+
+        try (Connection connection = setConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, usuario);
+            ps.setString(2, clave);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Cliente cliente = new Cliente();
+                    int idUsuario = rs.getInt("ID_Usuario");
+                    System.out.println("ID_Usuario desde BD: " + idUsuario);
+
+                    cliente.setID_Usuario(idUsuario);
+
+                    // Verificamos el valor después de la asignación
+                    System.out.println("ID_Usuario en objeto: " + cliente.getID_Usuario());
+                    cliente.setNombre(rs.getString("Nombre"));
+                    cliente.setApellido(rs.getString("Apellido"));
+                    cliente.setTelefono(rs.getString("Telefono"));
+                    cliente.setUsuario(rs.getString("usuario"));
+                    cliente.setClave(rs.getString("clave"));
+                    return cliente;
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+
     public void eliminarUsuario(int idUsuario) throws SQLException {
         try (Connection connection = setConnection();
              PreparedStatement ps = connection.prepareStatement(DELETE_USER_SQL)) {

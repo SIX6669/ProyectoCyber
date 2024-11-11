@@ -5,10 +5,11 @@ import modelo.Administrador;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public interface MenuAdmManager {
-    default void  modificarDatos(Scanner sc, AdministradorController ac){
+    /*default void modificarDatos(Scanner sc, AdministradorController ac){
         System.out.println("\n=== MODIFICAR DATOS DE ADMINISTRADOR ===");
         Administrador adminModificar = new Administrador();
 
@@ -55,7 +56,50 @@ public interface MenuAdmManager {
             System.err.println("Error al actualizar los datos: " + e.getMessage());
             e.printStackTrace();
         }
+    } /* */
+
+    default void modificarDatos(Scanner sc, AdministradorController ac, Administrador a) {
+        System.out.println("\n=== MODIFICAR DATOS DE ADMINISTRADOR ===");
+        System.out.println("Deje en blanco los campos que no desea modificar (presione Enter)");
+        sc.nextLine();
+        System.out.println("Nuevo nombre:");
+        String nuevoNombre = sc.nextLine().trim();
+        if (!nuevoNombre.isEmpty()) {
+            a.setNombre(nuevoNombre);
+        }
+
+        System.out.println("Nuevo apellido:");
+        String nuevoApellido = sc.nextLine().trim();
+        if (!nuevoApellido.isEmpty()) {
+            a.setApellido(nuevoApellido);
+        }
+
+        System.out.println("Nuevo usuario:");
+        String nuevoUsuario = sc.nextLine().trim();
+        if (!nuevoUsuario.isEmpty()) {
+            a.setUsuario(nuevoUsuario);
+        }
+
+        System.out.println("Nueva clave:");
+        String nuevaClave = sc.nextLine().trim();
+        if (!nuevaClave.isEmpty()) {
+            a.setClave(nuevaClave);
+        }
+
+        try {
+            boolean actualizado = ac.cambiar(a);
+
+            if (actualizado) {
+                System.out.println("Datos actualizados correctamente.");
+            } else {
+                System.out.println("No se pudo actualizar los datos. Por favor, intente nuevamente.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar los datos: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
+
 
     default void crearAdmin(Scanner sc){
         System.out.println("\n=== CREAR NUEVO ADMINISTRADOR ===");
@@ -63,7 +107,7 @@ public interface MenuAdmManager {
         Administrador nuevoAdmin = new Administrador();
 
         try {
-
+            sc.nextLine();
             System.out.println("Ingrese el nombre del administrador:");
             String nombre = sc.nextLine().trim();
             while (nombre.isEmpty()) {
@@ -135,6 +179,26 @@ public interface MenuAdmManager {
             }
         } catch (SQLException e) {
             System.err.println("Error al obtener la lista de administradores: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    default void mostrarAdminPorId(Administrador a) {
+        AdministradorController adminController = new AdministradorController();
+        try {
+            int nroLegajo = a.getNroLegajo();
+            Administrador admin = adminController.seleccAdminPorId(nroLegajo);
+            if (admin != null) {
+                System.out.println("\n=== PERFIL DEL ADMINISTRADOR ===");
+                System.out.printf("Nro Legajo: %d%n", admin.getNroLegajo());
+                System.out.printf("Usuario: %s%n", admin.getUsuario());
+                System.out.printf("Nombre: %s%n", admin.getNombre());
+                System.out.printf("Apellido: %s%n", admin.getApellido());
+            } else {
+                System.out.println("No se encontró el administrador con el número de legajo proporcionado.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener el perfil del administrador: " + e.getMessage());
             e.printStackTrace();
         }
     }

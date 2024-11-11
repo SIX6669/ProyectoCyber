@@ -1,10 +1,9 @@
 package vista;
 
-import controlador.*;
+import java.sql.*;
 
 public class MenuUsuarioTransaccion {
-    public static void main(String[] args) {
-        MenuAdm menu = new MenuAdm();
-        menu.MenuLogueado();
+    public static void main(String[] args) throws SQLException {
+        
     }
 }

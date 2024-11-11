@@ -5,7 +5,8 @@ public class Computadora {
     public int estado;
     public int ID_Usuario;
 
-    public Computadora(int estado, int ID_Usuario) {
+    public Computadora(int ID_Computadora, int estado, int ID_Usuario) {
+        this.ID_Computadora = ID_Computadora;
         this.estado = estado;
         this.ID_Usuario = ID_Usuario;
     }

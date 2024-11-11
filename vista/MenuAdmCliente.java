@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ClienteController;
+import modelo.Administrador;
 import modelo.Cliente;
 
 import java.sql.SQLException;
@@ -13,18 +14,37 @@ public interface MenuAdmCliente {
         ClienteController ac = new ClienteController();
         Cliente cl = new Cliente();
         sc.nextLine();
-        System.out.println("Ingrese el nombre del usuario");
+        
+        System.out.println("Ingrese el nombre del Cliente:");
         cl.setNombre(sc.nextLine());
-        System.out.println("Ingrese el Apellido del usuario");
+
+        System.out.println("Ingrese el Apellido del Cliente:");
         cl.setApellido(sc.nextLine());
-        System.out.println("Ingrese el Telefono del usuario");
-        while (!sc.hasNextInt()) {
-            System.out.println("Por favor, ingrese un número de teléfono válido:");
-            sc.next();
+        
+        System.out.println("Ingrese el Teléfono del Cliente:");
+        String telefono;
+        while (true) {
+            telefono = sc.nextLine();
+            if (telefono.matches("[0-9]+")) {  // Verifica que el teléfono contenga solo dígitos
+                cl.setTelefono(telefono);
+                break;
+            } else {
+                System.out.println("Por favor, ingrese un número de teléfono válido (solo números):");
+            }
         }
-        cl.setTelefono(sc.nextInt());
-        sc.nextLine();
-        ac.crearUsuario(cl);
+        System.out.println("Ingrese el nombre de usuario:");
+        String usuario = sc.nextLine();
+        cl.setUsuario(usuario);
+        System.out.println("Ingrese la clave del usuario:");
+        String clave = sc.nextLine();
+        cl.setClave(clave);
+        try {
+            ac.crearUsuario(cl);
+            System.out.println("Usuario creado exitosamente.");
+        } catch (SQLException e) {
+            System.err.println("Error al crear el usuario: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     default void mostrarUsuarios(){
@@ -38,7 +58,7 @@ public interface MenuAdmCliente {
                 System.out.println("ID\tNombre\t\tApellido\t\tTeléfono");
                 System.out.println("------------------------------------------------");
                 for (Cliente cliente : listaClientes) {
-                    System.out.printf("%-8d%-16s%-16s%d%n",
+                    System.out.printf("%-8d%-16s%-16s%s%n",
                             cliente.getID_Usuario(),
                             cliente.getNombre(),
                             cliente.getApellido(),
@@ -103,4 +123,29 @@ public interface MenuAdmCliente {
         }
     }
 
+    default void modificarUsuario(int ID_Usuario, Scanner scanner) {
+        ClienteController cliente = new ClienteController();
+
+        System.out.println("\n--- Modificar Usuario ---");
+
+        System.out.print("Ingrese el nuevo nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Ingrese el nuevo apellido: ");
+        String apellido = scanner.nextLine();
+
+        System.out.print("Ingrese el nuevo teléfono: ");
+        String telefono;
+        while (!scanner.hasNextInt()) {
+            System.out.println("Por favor, ingrese un número de teléfono válido:");
+            scanner.next();
+        }
+        telefono = scanner.nextLine();
+
+        try {
+            cliente.modificarUsuario(ID_Usuario, nombre, apellido, telefono);
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el usuario: " + e.getMessage());
+        }
+    }
 }

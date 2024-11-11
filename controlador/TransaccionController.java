@@ -4,12 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import BD.util.DBConnection;
 import modelo.Transaccion;
 
 public class TransaccionController {
-
     public void crear(Transaccion transaccion) throws SQLException {
         String sql = "INSERT INTO transaccion (TiempoComprado, total, ID_Usuario) VALUES (?, ?, ?)";
         try (Connection con = DBConnection.setConnection();
