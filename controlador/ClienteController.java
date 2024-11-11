@@ -17,7 +17,7 @@ public class ClienteController {
     String sql = "";
     //Este metodo es para cuando el usuario quiera ver su informacion (El usuario solo puede ver su info ver como agregar de forma dinamica el nro de usuario segun su ID)
     private static final String SELECT_USER = "SELECT ID_Usuario, Nombre, Apellido, Telefono FROM cliente WHERE ID_Usuario = ?";
-    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido,Telefono) VALUES (?, ?, ?)";
+    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido, Telefono, Tiempo) VALUES (?, ?, ?, ?)";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Cliente";
     private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE ID_Usuario = ?";
 
@@ -28,6 +28,7 @@ public class ClienteController {
             ps.setString(1,cliente.getNombre());
             ps.setString(2, cliente.getApellido());
             ps.setString(3,cliente.getTelefono());
+            ps.setTime(4, Time.valueOf("00:00:00"));
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
@@ -184,4 +185,20 @@ public class ClienteController {
         }
     }
 
+    public void actualizarTiempo(int ID_Usuario, Time tiempoComprado) throws SQLException {
+        String sql = "UPDATE Cliente SET Tiempo = ADDTIME(Tiempo, ?) WHERE ID_Usuario = ?";
+    
+        try (Connection con = DBConnection.setConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setTime(1, tiempoComprado);
+            ps.setInt(2, ID_Usuario);
+    
+            int resultado = ps.executeUpdate();
+            if (resultado > 0) {
+                System.out.println("Tiempo del cliente actualizado correctamente.");
+            } else {
+                System.out.println("No se encontró el cliente con ID: " + ID_Usuario);
+            }
+        }
+    }
 }

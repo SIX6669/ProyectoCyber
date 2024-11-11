@@ -9,24 +9,29 @@ public class Cliente {
     public String usuario;
     public String clave;
     public String telefono;
-    public Time tiempoAdquirido;
+    public Time Tiempo;
 
-    public Cliente() {
-    }
+    public Cliente() {}
 
-    public Cliente( String nombre, String apellido, String telefono) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-    }
-
-    public Cliente(int ID_Usuario, String nombre, String apellido, String telefono, Time tiempo) {
+    public Cliente(int ID_Usuario, String nombre, String apellido, String usuario, String clave, String telefono, Time Tiempo) {
         this.ID_Usuario = ID_Usuario;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.usuario = usuario;
+        this.clave = clave;
+        this.telefono = telefono;
+        this.Tiempo = Tiempo;
+    }
+
+    public Cliente(int ID_Usuario, String nombre, String apellido, String usuario, String clave, String telefono) {
+        this.ID_Usuario = ID_Usuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuario = usuario;
+        this.clave = clave;
         this.telefono = telefono;
     }
-    
+
     public Cliente(int ID_Usuario, String nombre, String apellido, String telefono) {
         this.ID_Usuario = ID_Usuario;
         this.nombre = nombre;
@@ -34,28 +39,12 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
     public int getID_Usuario() {
         return ID_Usuario;
     }
 
-    public void setID_Usuario(int ID_Usuario) {
-        this.ID_Usuario = ID_Usuario;
+    public void setID_Usuario(int iD_Usuario) {
+        ID_Usuario = iD_Usuario;
     }
 
     public String getNombre() {
@@ -74,6 +63,22 @@ public class Cliente {
         this.apellido = apellido;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -82,16 +87,11 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public Time getTiempoAdquirido() {
-        return tiempoAdquirido;
+    public Time getTiempo() {
+        return Tiempo;
     }
 
-    public void setTiempoAdquirido(Time tiempoAdquirido) {
-        this.tiempoAdquirido = tiempoAdquirido;
-    }
-
-    @Override
-    public String toString() {
-        return "Cliente [ID_Usuario=" + ID_Usuario + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", tiempoAdquirido=" + tiempoAdquirido + "]";
+    public void setTiempo(Time tiempo) {
+        Tiempo = tiempo;
     }
 }

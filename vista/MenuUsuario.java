@@ -1,16 +1,18 @@
 package vista;
 
 import controlador.ClienteController;
+import controlador.TransaccionController;
 import modelo.Administrador;
 import modelo.Cliente;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class MenuUsuario implements MenuAdmCliente {
+public class MenuUsuario implements MenuAdmCliente, MenuUsuarioTransaccion {
     private Administrador a = new Administrador();
     private Cliente cl;
     private ClienteController c = new ClienteController();
+    private TransaccionController transaccionController = new TransaccionController();
     private Scanner sc = new Scanner(System.in);
     private static boolean ejecutar = true;
 
@@ -45,7 +47,7 @@ public class MenuUsuario implements MenuAdmCliente {
                         modificarUsuario(cl.getID_Usuario(), sc);
                         break;
                     case 3:
-
+                        crearTransaccion(cl.getID_Usuario(), transaccionController);
                         break;
                     case 4:
 

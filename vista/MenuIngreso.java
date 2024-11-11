@@ -78,14 +78,14 @@ public class MenuIngreso {
         System.out.println("Ingrese su teléfono:");
         String telefono;
         while (true) {
-        telefono = sc.nextLine();
-        if (telefono.matches("[0-9]+")) {
-            nuevoCliente.setTelefono(telefono);
-            break;
-        } else {
-            System.out.println("Por favor, ingrese un número de teléfono válido (solo números):");
+            telefono = sc.nextLine();
+            if (telefono.matches("[0-9]+")) {
+                nuevoCliente.setTelefono(telefono);
+                break;
+            } else {
+                System.out.println("Por favor, ingrese un número de teléfono válido (solo números):");
+            }
         }
-    }
 
         System.out.println("Ingrese su usuario:");
         nuevoCliente.setUsuario(sc.nextLine());
@@ -93,17 +93,19 @@ public class MenuIngreso {
         System.out.println("Ingrese su clave:");
         nuevoCliente.setClave(sc.nextLine());
 
-        String sql = "INSERT INTO Cliente (Nombre, Apellido, Telefono, usuario, clave) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (Nombre, Apellido, Telefono, usuario, clave, Tiempo) VALUES (?, ?, ?, ?, ?, ?)";
+
         String generatedColumns[] = { "ID_Usuario" };
 
         try (Connection connection = setConnection();
-             PreparedStatement ps = connection.prepareStatement(sql, generatedColumns)) {
+            PreparedStatement ps = connection.prepareStatement(sql, generatedColumns)) {
 
             ps.setString(1, nuevoCliente.getNombre());
             ps.setString(2, nuevoCliente.getApellido());
             ps.setString(3, nuevoCliente.getTelefono());
             ps.setString(4, nuevoCliente.getUsuario());
             ps.setString(5, nuevoCliente.getClave());
+            ps.setTime(6, Time.valueOf("00:00:00"));
 
             int affectedRows = ps.executeUpdate();
 
