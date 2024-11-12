@@ -29,7 +29,7 @@ public class MenuIngreso {
     }
 
     public void mostrarMenuPrincipal() throws SQLException {
-        System.out.println("¿Bienvenido desea ingresar como cliente o administrador? Ingrese 0 para Cliente - 1 para adm");
+        System.out.println("Bienvenido, desea ingresar como cliente o administrador? Ingrese 0 para Cliente - 1 para adm");
         tipoUsuario = sc.nextInt();
         sc.nextLine(); 
         if (tipoUsuario == 0) {

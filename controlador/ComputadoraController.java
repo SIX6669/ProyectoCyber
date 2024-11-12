@@ -11,16 +11,12 @@ import static BD.util.DBConnection.setConnection;
 public class ComputadoraController {
 
     public void crear(Computadora computadora) throws SQLException {
-        // Cambiar la consulta para insertar valores dinámicamente desde el objeto 'computadora'
+
         String sql = "INSERT INTO computadoras (estado) VALUES (?)";
 
         try (Connection con = setConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
-
-            // Establecer los parámetros de la consulta usando los valores de la computadora
-            stmt.setInt(1, computadora.getEstado()); // Asumiendo que 'estado' es un int
-
-            // Ejecutar la consulta
+            stmt.setInt(1, computadora.getEstado());
             stmt.executeUpdate();
         }
     }

@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import static BD.util.DBConnection.setConnection;
 
 public class AdministradorController {
-    //Para Usuarios
+    //controlador para extrae datos de la tabla del Admin, usando sentencuas SQL
     private static final String INSERT_ADMIN_SQL = "INSERT INTO Admin (NroLegajo, Usuario, Clave, Nombre, Apellido) VALUES (?, ?, ?, ?, ?)";
-    private static final String SELECT_ADMIN_BY_ID = "SELECT * FROM Admin WHERE NroLegajo = ?";
     private static final String SELECT_ALL_ADMIN = "SELECT * FROM Admin";
     private static final String DELETE_ADMIN_SQL = "DELETE FROM Admin WHERE NroLegajo = ?";
-    //
-
+//Prepared Statemen es un tipo de interfaz que se usa pra poder ejecutar sentencias SQL
+//Metodo para crear una nueva fila en la tabla de admin donde se obtienen los valores de cada columna
     public void crearAdmin( Administrador admin) throws SQLException {
         try(Connection connection = setConnection();
             PreparedStatement ps = connection.prepareStatement(INSERT_ADMIN_SQL)) {
@@ -31,7 +30,7 @@ public class AdministradorController {
             throw new RuntimeException(e);
         }
     }
-
+//Utilizamos un array list para generar un listado de todos los administradores cargados en el sistema
     public ArrayList<Administrador> seleccTodosAdmin() throws SQLException{
         ArrayList<Administrador> admins = new ArrayList<>();
         try(Connection connection = setConnection();
@@ -48,7 +47,7 @@ public class AdministradorController {
         }
         return admins;
     }
-
+//para poder cambiar un valor especifico
     public boolean cambiar(Administrador admin) throws SQLException {
         StringBuilder sql = new StringBuilder("UPDATE Admin SET ");
 
@@ -95,7 +94,7 @@ public class AdministradorController {
             return ps.executeUpdate() > 0;
         }
     }
-
+//selecciona un admin segun el id que se le ingrese como parametro
     public Administrador seleccAdminPorId(int idAdmin) throws SQLException {
         String sql = "SELECT NroLegajo, usuario, nombre, apellido FROM admin WHERE NroLegajo = ?";
         Administrador admin = null;
@@ -118,9 +117,9 @@ public class AdministradorController {
             throw e;
         }
     
-        return admin; // Retorna null si no se encuentra el administrador
+        return admin; // retorna null si no se encuentra el administrador
     }
-
+//segun el numero de Legajo busca al admin y lo borra de la tabla
     public boolean borrarAdmin(int nroLegajo)throws SQLException{
         boolean filaBorrada = false;
 
@@ -131,7 +130,8 @@ public class AdministradorController {
         }
         return filaBorrada;
     }
-
+//forma de autenticar el admin para el login selecciona los atributos de la tabla y los compara con los paramateros
+    //del admin que quiere ingresar
     public Administrador autenticarAdmin(String usuario, String clave) throws SQLException {
         String sql = "SELECT NroLegajo, Nombre, Apellido, usuario, clave FROM Admin WHERE usuario = ? AND clave = ?";
 

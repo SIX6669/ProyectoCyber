@@ -160,12 +160,12 @@ public class ClienteController {
     public void usarComputadora(int ID_Usuario) throws SQLException {
         Scanner sc = new Scanner(System.in);
 
-        // Paso 1: Verificar y restar el tiempo del usuario
+        // verifica y resta el tiempo
         System.out.println("Seleccione el tiempo de uso de la computadora:");
         System.out.println("1. 30 minutos");
         System.out.println("2. 1 hora");
         int opcion = sc.nextInt();
-        sc.nextLine(); // Limpiar el buffer después de nextInt()
+        sc.nextLine();
 
         int tiempoUso = (opcion == 1) ? 30 : 60;
 
@@ -176,7 +176,7 @@ public class ClienteController {
              PreparedStatement updateCompuStmt = connection.prepareStatement("UPDATE computadoras SET estado = 1, ID_Usuario = ? WHERE ID_Computadora = ?");
              PreparedStatement resetCompuStmt = connection.prepareStatement("UPDATE computadoras SET estado = 0, ID_Usuario = NULL WHERE ID_Computadora = ?")) {
 
-            // Obtener tiempo disponible del usuario
+            // ovtene tiempo disponible del usuario
             selectTiempoStmt.setInt(1, ID_Usuario);
             ResultSet rsTiempo = selectTiempoStmt.executeQuery();
 
@@ -185,7 +185,7 @@ public class ClienteController {
                 int tiempoAdquiridoMinutos = tiempoAdquirido.toLocalTime().toSecondOfDay() / 60;
 
                 if (tiempoAdquiridoMinutos >= tiempoUso) {
-                    // Restar el tiempo de uso y actualizar el tiempo en la base de datos
+                    // restar el tiempo de uso y actualiza el tiempo en la bd
                     int nuevoTiempoMinutos = tiempoAdquiridoMinutos - tiempoUso;
                     Time tiempoActualizado = Time.valueOf(LocalTime.ofSecondOfDay(nuevoTiempoMinutos * 60));
                     updateTiempoStmt.setTime(1, tiempoActualizado);
@@ -194,7 +194,7 @@ public class ClienteController {
 
                     System.out.println("Tiempo actualizado. Tiempo restante: " + nuevoTiempoMinutos + " minutos.");
 
-                    // Paso 2: Mostrar computadoras disponibles
+
                     System.out.println("\n=== COMPUTADORAS DISPONIBLES ===");
                     ResultSet rsCompus = selectCompusStmt.executeQuery();
                     boolean hayCompusDisponibles = false;
