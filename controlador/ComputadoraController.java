@@ -159,19 +159,58 @@ public class ComputadoraController {
             }
         }
     }
+    public int obtenerTiempoRestante(int ID_Usuario) throws SQLException {
+        String sql = "SELECT TIME_TO_SEC(Tiempo) / 60 AS Minutos FROM Cliente WHERE ID_Usuario = ?";
+        try (Connection con = DBConnection.setConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, ID_Usuario);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("Minutos");
+            } else {
+                throw new SQLException("Usuario no encontrado.");
+            }
+        }
+    }
+
+
     public void actualizarComputadora(int ID_Usuario) throws SQLException {
         Scanner sc = new Scanner(System.in);
+
+        // Obtener tiempo restante del usuario
+        int tiempoRestante = obtenerTiempoRestante(ID_Usuario);
+
+        // Preguntar al usuario cuánto tiempo desea usar la computadora
+        System.out.println("¿Cuánto tiempo desea usar la computadora?");
+        System.out.println("1. 30 minutos");
+        System.out.println("2. 1 hora");
+        int opcion = sc.nextInt();
+        sc.nextLine(); // Limpiar el buffer después de nextInt()
+
+        int tiempoSolicitado;
+        if (opcion == 1) {
+            tiempoSolicitado = 30;
+        } else if (opcion == 2) {
+            tiempoSolicitado = 60;
+        } else {
+            System.out.println("Opción no válida.");
+            return;
+        }
+
+        // Verificar si el usuario tiene suficiente tiempo
+        if (tiempoSolicitado > tiempoRestante) {
+            System.out.println("No tiene tiempo suficiente.");
+            return;
+        }
 
         System.out.println("Ingrese el ID de la computadora:");
         int ID_Computadora = sc.nextInt();
         sc.nextLine(); // Limpiar el buffer después de nextInt()
 
         String sqlUpdate = "UPDATE computadoras SET estado = ?, ID_Usuario = ? WHERE ID_Computadora = ?";
-        String sqlReset = "UPDATE computadoras SET estado = 0, ID_Usuario = NULL WHERE ID_Computadora = ?";
 
         try (Connection con = DBConnection.setConnection();
-             PreparedStatement stmtUpdate = con.prepareStatement(sqlUpdate);
-             PreparedStatement stmtReset = con.prepareStatement(sqlReset)) {
+             PreparedStatement stmtUpdate = con.prepareStatement(sqlUpdate)) {
             int nuevoEstado = 1; // Estado 1 (ocupado)
             stmtUpdate.setInt(1, nuevoEstado);
             stmtUpdate.setInt(2, ID_Usuario);
@@ -180,8 +219,6 @@ public class ComputadoraController {
             if (filasActualizadas > 0) {
                 System.out.println("Computadora actualizada con éxito.");
                 System.out.println("La computadora nro: " + ID_Computadora + " está ocupada por ti ahora.");
-
-
             } else {
                 System.out.println("No se encontró la computadora con ID: " + ID_Computadora);
             }
@@ -190,6 +227,9 @@ public class ComputadoraController {
             throw e;
         }
     }
+
+
+
 
 
     public void eliminarComputadora() {

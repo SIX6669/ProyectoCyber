@@ -50,9 +50,7 @@ public class MenuUsuario implements MenuAdmCliente {
                     case 3:
 
                     case 4:
-                        com.mostrarComputadoras();
-                        com.actualizarComputadora(cl.getID_Usuario());
-                        c.actualizarTiempoComputadora(cl.getID_Usuario());
+                        c.usarComputadora(cl.getID_Usuario());
                         break;
                     case 5:
                         ejecutar = false;
