@@ -6,9 +6,8 @@ public class Administrador {
     public String apellido;
     public String usuario;
     public String clave;
-    public Administrador() {
 
-    }
+    public Administrador() {}
     
     public Administrador(int nroLegajo, String nombre, String apellido, String usuario, String clave) {
         this.nroLegajo = nroLegajo;

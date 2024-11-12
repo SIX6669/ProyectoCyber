@@ -134,7 +134,7 @@ public class MenuAdm implements MenuAdmCliente, MenuAdmManager, MenuAdmComputado
                 eliminarUsuario(sc, c);
                 break;
             case 5:
-                modificarUsuario(opcionCliente, sc);
+                modificarUsuarioPorAdmin(sc);
                 break;
             case 6:
                 break; 

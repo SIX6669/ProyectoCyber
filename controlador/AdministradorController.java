@@ -56,9 +56,9 @@ public class AdministradorController {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                Administrador admin = new Administrador(rs.getInt("NroLegajo"),rs.getString("Usuario"),
-                        rs.getString("Clave"),rs.getString("Nombre"),
-                        rs.getString("Apellido"));
+                Administrador admin = new Administrador(rs.getInt("NroLegajo"), rs.getString("Nombre"), 
+                rs.getString("Apellido"), rs.getString("Usuario"), 
+                rs.getString("Clave"));
                 admins.add(admin);
             }
         }

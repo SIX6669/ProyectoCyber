@@ -51,7 +51,7 @@ public interface MenuAdmComputadora {
         System.out.println("1 - Ocupado");
         System.out.println("2 - Fuera de servicio");
         System.out.print("Ingrese la opción (0, 1, o 2): ");
-
+        
         int nuevoEstado = scanner.nextInt();
         if (nuevoEstado >= 0 && nuevoEstado <= 2) {
             try {

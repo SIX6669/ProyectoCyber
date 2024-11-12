@@ -44,7 +44,7 @@ public class Cliente {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-        this.Tiempo = Tiempo;
+        this.Tiempo = tiempo;
     }
 
     public int getID_Usuario() {

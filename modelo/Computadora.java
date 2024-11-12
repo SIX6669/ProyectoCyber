@@ -11,8 +11,7 @@ public class Computadora {
         this.ID_Usuario = ID_Usuario;
     }
 
-    public Computadora() {
-    }
+    public Computadora() {}
 
     public int getID_Computadora() {
         return ID_Computadora;

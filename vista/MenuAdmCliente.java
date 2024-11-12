@@ -31,12 +31,11 @@ public interface MenuAdmCliente {
         }
 
         System.out.println("Ingrese el nombre de usuario:");
-        String usuario = sc.nextLine();
-        cl.setUsuario(usuario);
+        cl.setUsuario(sc.nextLine());
 
         System.out.println("Ingrese la clave del usuario:");
-        String clave = sc.nextLine();
-        cl.setClave(clave);
+        cl.setClave(sc.nextLine());
+
 
         try {
             ac.crearUsuario(cl);
@@ -124,6 +123,35 @@ public interface MenuAdmCliente {
         ClienteController cliente = new ClienteController();
 
         System.out.println("\n--- Modificar Usuario ---");
+        scanner.nextLine();
+
+        System.out.print("Ingrese el nuevo nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Ingrese el nuevo apellido: ");
+        String apellido = scanner.nextLine();
+
+        System.out.print("Ingrese el nuevo teléfono: ");
+        String telefono = scanner.nextLine().trim();
+        while (telefono.isEmpty() || !telefono.matches("[0-9]+")) {
+            System.out.println("Por favor, ingrese un número de teléfono válido (solo dígitos):");
+            telefono = scanner.nextLine().trim();
+        }
+
+        try {
+            cliente.modificarUsuario(ID_Usuario, nombre, apellido, telefono);
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el usuario: " + e.getMessage());
+        }
+    }
+
+    public default void modificarUsuarioPorAdmin(Scanner scanner) {
+        ClienteController cliente = new ClienteController();
+
+        System.out.println("\n--- Modificar Usuario ---");
+        
+        System.out.println("Ingrese el ID del usuario a modificar:");
+        int ID_Usuario = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Ingrese el nuevo nombre: ");

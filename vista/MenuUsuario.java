@@ -1,9 +1,11 @@
 package vista;
 
 import controlador.ClienteController;
+import controlador.ComputadoraController;
 import controlador.TransaccionController;
 import modelo.Administrador;
 import modelo.Cliente;
+import modelo.Computadora;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -11,8 +13,10 @@ import java.util.Scanner;
 public class MenuUsuario implements MenuAdmCliente, MenuUsuarioTransaccion {
     private Administrador a = new Administrador();
     private Cliente cl;
+    private Computadora computadora;
     private ClienteController c = new ClienteController();
     private TransaccionController transaccionController = new TransaccionController();
+    private ComputadoraController com = new ComputadoraController();
     private Scanner sc = new Scanner(System.in);
     private static boolean ejecutar = true;
 
@@ -51,7 +55,7 @@ public class MenuUsuario implements MenuAdmCliente, MenuUsuarioTransaccion {
                         crearTransaccion(cl.getID_Usuario(), transaccionController);
                         break;
                     case 4:
-
+                        c.usarComputadora(cl.getID_Usuario());
                         break;
                     case 5:
                         ejecutar = false;

@@ -4,6 +4,7 @@ import BD.util.DBConnection;
 import modelo.Cliente;
 import java.util.Scanner;
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static BD.util.DBConnection.setConnection;
@@ -16,9 +17,9 @@ public class ClienteController {
     ResultSet rs = null;
     String sql = "";
 
-    private static final String SELECT_USER = "SELECT ID_Usuario, Nombre, Apellido, Telefono FROM cliente WHERE ID_Usuario = ?";
-    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido, Telefono, Tiempo) VALUES (?, ?, ?, ?)";
-    private static final String SELECT_ALL_USERS = "SELECT * FROM Cliente";
+    private static final String SELECT_USER = "SELECT ID_Usuario, Nombre, Apellido, Telefono, Tiempo FROM cliente WHERE ID_Usuario = ?";
+    private static final String INSERT_USER_SQL = "INSERT INTO Cliente (Nombre, Apellido, Telefono, Tiempo, Usuario, Clave) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SELECT_ALL_USERS = "SELECT ID_Usuario, Nombre, Apellido, Telefono, Tiempo FROM Cliente";
     private static final String DELETE_USER_SQL = "DELETE FROM Cliente WHERE ID_Usuario = ?";
 
     public void crearUsuario(Cliente cliente) throws SQLException {
@@ -29,6 +30,8 @@ public class ClienteController {
             ps.setString(2, cliente.getApellido());
             ps.setString(3,cliente.getTelefono());
             ps.setTime(4, Time.valueOf("00:00:00"));
+            ps.setString(5,cliente.getUsuario());
+            ps.setString(6,cliente.getClave());
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
@@ -68,6 +71,7 @@ public class ClienteController {
                 System.out.println("Nombre: " + cliente.getNombre());
                 System.out.println("Apellido: " + cliente.getApellido());
                 System.out.println("Teléfono: " + cliente.getTelefono());
+                System.out.println("Tiempo comprado: " + cliente.getTiempo());
                 return cliente;
             } else {
                 System.out.println("No se encontró ningún cliente con el número de usuario: " + ID_Usuario);
@@ -157,6 +161,157 @@ public class ClienteController {
             } else {
                 System.out.println("No se encontró el cliente con ID: " + ID_Usuario);
             }
+        }
+    }
+
+    public void actualizarTiempoComputadora(int ID_Usuario) throws SQLException {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Seleccione el tiempo de uso de la computadora:");
+        System.out.println("1. 30 minutos");
+        System.out.println("2. 1 hora");
+        int opcion = sc.nextInt();
+        sc.nextLine(); // Limpiar el buffer después de nextInt()
+
+        int tiempoUso = (opcion == 1) ? 30 : 60;
+
+        try (Connection connection = setConnection();
+             PreparedStatement selectStmt = connection.prepareStatement("SELECT Tiempo FROM Cliente WHERE ID_Usuario = ?");
+             PreparedStatement updateStmt = connection.prepareStatement("UPDATE Cliente SET Tiempo = ? WHERE ID_Usuario = ?");
+             PreparedStatement resetStmt = connection.prepareStatement("UPDATE computadoras SET estado = 0, ID_Usuario = NULL WHERE ID_Usuario = ?")) {
+
+            // Verificar tiempo adquirido actual
+            selectStmt.setInt(1, ID_Usuario);
+            ResultSet rs = selectStmt.executeQuery();
+            if (rs.next()) {
+                Time tiempoAdquirido = rs.getTime("Tiempo");
+                int tiempoAdquiridoMinutos = tiempoAdquirido.toLocalTime().toSecondOfDay() / 60;
+
+                if (tiempoAdquiridoMinutos >= tiempoUso) {
+                    int nuevoTiempoMinutos = tiempoAdquiridoMinutos - tiempoUso;
+
+                    // Convertir minutos a formato TIME para la base de datos
+                    Time tiempoActualizado = Time.valueOf(LocalTime.ofSecondOfDay(nuevoTiempoMinutos * 60));
+
+                    // Actualizar tiempo en la base de datos
+                    updateStmt.setTime(1, tiempoActualizado);
+                    updateStmt.setInt(2, ID_Usuario);
+                    updateStmt.executeUpdate();
+
+                    System.out.println("Su tiempo ha finalizado y la computadora se ha liberado. Tiempo actualizado. Tiempo restante: " + nuevoTiempoMinutos + " minutos.");
+
+                    // Actualizar estado de la computadora a 0 (disponible)
+                    resetStmt.setInt(1, ID_Usuario);
+                    resetStmt.executeUpdate();
+
+                    System.out.println("La computadora que utilizó ahora está disponible nuevamente.");
+                } else {
+                    System.out.println("No tiene suficiente tiempo, acredite más tiempo.");
+                }
+            } else {
+                System.out.println("No se encontró el usuario con ID: " + ID_Usuario);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar el tiempo: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void usarComputadora(int ID_Usuario) throws SQLException {
+        Scanner sc = new Scanner(System.in);
+
+        // Paso 1: Verificar y restar el tiempo del usuario
+        System.out.println("Seleccione el tiempo de uso de la computadora:");
+        System.out.println("1. 30 minutos");
+        System.out.println("2. 1 hora");
+        int opcion = sc.nextInt();
+        sc.nextLine(); // Limpiar el buffer después de nextInt()
+
+        int tiempoUso = (opcion == 1) ? 30 : 60;
+
+        try (Connection connection = setConnection();
+             PreparedStatement selectTiempoStmt = connection.prepareStatement("SELECT Tiempo FROM Cliente WHERE ID_Usuario = ?");
+             PreparedStatement updateTiempoStmt = connection.prepareStatement("UPDATE Cliente SET Tiempo = ? WHERE ID_Usuario = ?");
+             PreparedStatement selectCompusStmt = connection.prepareStatement("SELECT ID_Computadora, estado FROM computadoras WHERE estado = 0");
+             PreparedStatement updateCompuStmt = connection.prepareStatement("UPDATE computadoras SET estado = 1, ID_Usuario = ? WHERE ID_Computadora = ?");
+             PreparedStatement resetCompuStmt = connection.prepareStatement("UPDATE computadoras SET estado = 0, ID_Usuario = NULL WHERE ID_Computadora = ?")) {
+
+            // Obtener tiempo disponible del usuario
+            selectTiempoStmt.setInt(1, ID_Usuario);
+            ResultSet rsTiempo = selectTiempoStmt.executeQuery();
+
+            if (rsTiempo.next()) {
+                Time tiempoAdquirido = rsTiempo.getTime("Tiempo");
+                int tiempoAdquiridoMinutos = tiempoAdquirido.toLocalTime().toSecondOfDay() / 60;
+
+                if (tiempoAdquiridoMinutos >= tiempoUso) {
+                    // Restar el tiempo de uso y actualizar el tiempo en la base de datos
+                    int nuevoTiempoMinutos = tiempoAdquiridoMinutos - tiempoUso;
+                    Time tiempoActualizado = Time.valueOf(LocalTime.ofSecondOfDay(nuevoTiempoMinutos * 60));
+                    updateTiempoStmt.setTime(1, tiempoActualizado);
+                    updateTiempoStmt.setInt(2, ID_Usuario);
+                    updateTiempoStmt.executeUpdate();
+
+                    System.out.println("Tiempo actualizado. Tiempo restante: " + nuevoTiempoMinutos + " minutos.");
+
+                    // Paso 2: Mostrar computadoras disponibles
+                    System.out.println("\n=== COMPUTADORAS DISPONIBLES ===");
+                    ResultSet rsCompus = selectCompusStmt.executeQuery();
+                    boolean hayCompusDisponibles = false;
+
+                    while (rsCompus.next()) {
+                        hayCompusDisponibles = true;
+                        int idCompu = rsCompus.getInt("ID_Computadora");
+                        System.out.println("ID Computadora: " + idCompu);
+                    }
+
+                    if (!hayCompusDisponibles) {
+                        System.out.println("No hay computadoras disponibles en este momento.");
+                        return;
+                    }
+
+                    // Selección de computadora
+                    System.out.println("Ingrese el ID de la computadora que desea usar:");
+                    int ID_Computadora = sc.nextInt();
+                    sc.nextLine(); // Limpiar el buffer después de nextInt()
+
+                    // Asignar la computadora al usuario
+                    updateCompuStmt.setInt(1, ID_Usuario);
+                    updateCompuStmt.setInt(2, ID_Computadora);
+                    int filasActualizadas = updateCompuStmt.executeUpdate();
+
+                    if (filasActualizadas > 0) {
+                        System.out.println("Computadora " + ID_Computadora + " asignada con éxito. Ahora está ocupada.");
+
+                        // Simular uso de la computadora con tres mensajes de "Usando..."
+                        System.out.println("Usando...");
+                        Thread.sleep(1000); // Pausa de 1 segundo
+                        System.out.println("Usando...");
+                        Thread.sleep(1000); // Pausa de 1 segundo
+                        System.out.println("Usando...");
+                        Thread.sleep(1000); // Pausa de 1 segundo
+
+                        // Actualizar estado de la computadora a 0 (disponible) y ID_Usuario a NULL
+                        resetCompuStmt.setInt(1, ID_Computadora);
+                        resetCompuStmt.executeUpdate();
+
+                        // Notificar al usuario que su tiempo ha terminado
+                        System.out.println("Su tiempo de conexión ha finalizado. La computadora ahora está disponible.");
+                    } else {
+                        System.out.println("Error al asignar la computadora. Es posible que ya esté ocupada.");
+                    }
+                } else {
+                    System.out.println("No tiene suficiente tiempo para esta sesión. Acredite más tiempo.");
+                }
+            } else {
+                System.out.println("No se encontró el usuario con ID: " + ID_Usuario);
+            }
+        } catch (InterruptedException e) {
+            System.err.println("Error durante la simulación del uso: " + e.getMessage());
+            Thread.currentThread().interrupt(); // Restaurar el estado de interrupción del hilo
+        } catch (SQLException e) {
+            System.err.println("Error al usar la computadora: " + e.getMessage());
+            throw e;
         }
     }
 }

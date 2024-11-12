@@ -31,14 +31,13 @@ public class ComputadoraController {
 
     public void crear(Computadora computadora) throws SQLException {
         // Cambiar la consulta para insertar valores dinámicamente desde el objeto 'computadora'
-        String sql = "INSERT INTO computadoras (estado, ID_Usuario) VALUES (?, ?)";
+        String sql = "INSERT INTO computadoras (estado) VALUES (?)";
 
         try (Connection con = setConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             // Establecer los parámetros de la consulta usando los valores de la computadora
             stmt.setInt(1, computadora.getEstado()); // Asumiendo que 'estado' es un int
-            stmt.setInt(2, computadora.getID_Usuario()); // Asumiendo que 'ID_Usuario' es un int o null
 
             // Ejecutar la consulta
             stmt.executeUpdate();
@@ -63,7 +62,7 @@ public class ComputadoraController {
     }
 
     public void actualizar(int ID_Computadora, int nuevoEstado) throws SQLException {
-        String sql = "UPDATE computadoras SET estado = ?, WHERE ID_Computadora = ?";
+        String sql = "UPDATE computadoras SET estado = ? WHERE ID_Computadora = ?";
         try (Connection con = setConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, nuevoEstado);
@@ -101,6 +100,7 @@ public class ComputadoraController {
             System.out.println("-------------");
         }
     }
+
     public void actualizarTiempoComputadora(int ID_Usuario) throws SQLException {
         Scanner sc = new Scanner(System.in);
 
@@ -191,7 +191,6 @@ public class ComputadoraController {
             throw e;
         }
     }
-
 
     public void eliminarComputadora() {
         Scanner scanner = new Scanner(System.in);
