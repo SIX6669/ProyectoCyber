@@ -1,6 +1,5 @@
 package controlador;
 import modelo.Administrador;
-import modelo.Cliente;
 
 
 import java.sql.Connection;
@@ -30,21 +29,6 @@ public class AdministradorController {
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void seleccAdminLegajo(int nroLegajo) throws SQLException{
-        try(Connection connection = setConnection();
-            PreparedStatement ps = connection.prepareStatement(SELECT_ADMIN_BY_ID)) {
-            ps.setInt(1, nroLegajo);
-            ResultSet rs = ps.executeQuery();
-
-            if(rs.next()){
-                Administrador admin= new Administrador(rs.getInt("NroLegajo"),rs.getString("Usuario"),
-                        rs.getString("Clave"),rs.getString("Nombre"),
-                        rs.getString("Apellido"));
-                System.out.println(admin.toString());
-            }
         }
     }
 

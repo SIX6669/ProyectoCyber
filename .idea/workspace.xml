@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3af7fb7-70d4-4004-a31f-a15871547a9a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_9_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ProyectoCyber.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoCyber.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BD/util/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BD/util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BD/util/credenciales.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BD/util/credenciales.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/AdministradorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/ComputadoraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/ComputadoraController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/TransaccionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/TransaccionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/Transaccion.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/Transaccion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuAdmCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuAdmCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuAdmManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuAdmManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuIngreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuIngreso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/vista/MenuUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/MenuUsuarioComputadora.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +36,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2ohz2KvCxo4B6a75kZN4nVD5IOM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,10 +46,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Application.MenuPrincipal.executor": "Run",
     "Application.MenuUsuarioTransaccion.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "nicoComputadoras",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/Nebularmess/Documents/TUP/ProgII/TPI/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",

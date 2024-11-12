@@ -29,24 +29,12 @@ public class Transaccion {
         return TiempoComprado;
     }
 
-    public void setTiempoComprado(Time tiempoComprado) {
-        TiempoComprado = tiempoComprado;
-    }
-
     public double getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
     public int getID_Usuario() {
         return ID_Usuario;
-    }
-
-    public void setID_Usuario(int iD_Usuario) {
-        ID_Usuario = iD_Usuario;
     }
 
     @Override

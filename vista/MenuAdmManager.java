@@ -9,54 +9,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public interface MenuAdmManager {
-    /*default void modificarDatos(Scanner sc, AdministradorController ac){
-        System.out.println("\n=== MODIFICAR DATOS DE ADMINISTRADOR ===");
-        Administrador adminModificar = new Administrador();
-
-        System.out.println("Ingrese el número de legajo del administrador a modificar:");
-        int nroLegajo = sc.nextInt();
-        sc.nextLine();
-        adminModificar.setNroLegajo(nroLegajo);
-
-        System.out.println("Deje en blanco los campos que no desea modificar (presione Enter)");
-
-        System.out.println("Nuevo nombre :");
-        String nuevoNombre = sc.nextLine().trim();
-        if (!nuevoNombre.isEmpty()) {
-            adminModificar.setNombre(nuevoNombre);
-        }
-
-        System.out.println("Nuevo apellido:");
-        String nuevoApellido = sc.nextLine().trim();
-        if (!nuevoApellido.isEmpty()) {
-            adminModificar.setApellido(nuevoApellido);
-        }
-
-        System.out.println("Nuevo usuario :");
-        String nuevoUsuario = sc.nextLine().trim();
-        if (!nuevoUsuario.isEmpty()) {
-            adminModificar.setUsuario(nuevoUsuario);
-        }
-
-        System.out.println("Nueva clave :");
-        String nuevaClave = sc.nextLine().trim();
-        if (!nuevaClave.isEmpty()) {
-            adminModificar.setClave(nuevaClave);
-        }
-
-        try {
-            boolean actualizado = ac.cambiar(adminModificar);
-
-            if (actualizado) {
-                System.out.println("Datos actualizados correctamente.");
-            } else {
-                System.out.println("No se pudo actualizar los datos. Por favor, intente nuevamente.");
-            }
-        } catch (SQLException e) {
-            System.err.println("Error al actualizar los datos: " + e.getMessage());
-            e.printStackTrace();
-        }
-    } /* */
 
     default void modificarDatos(Scanner sc, AdministradorController ac, Administrador a) {
         System.out.println("\n=== MODIFICAR DATOS DE ADMINISTRADOR ===");

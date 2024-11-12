@@ -11,12 +11,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MenuUsuario implements MenuAdmCliente, MenuUsuarioTransaccion {
-    private Administrador a = new Administrador();
     private Cliente cl;
-    private Computadora computadora;
     private ClienteController c = new ClienteController();
     private TransaccionController transaccionController = new TransaccionController();
-    private ComputadoraController com = new ComputadoraController();
     private Scanner sc = new Scanner(System.in);
     private static boolean ejecutar = true;
 

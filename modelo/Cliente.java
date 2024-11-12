@@ -13,32 +13,6 @@ public class Cliente {
 
     public Cliente() {}
 
-    public Cliente(int ID_Usuario, String nombre, String apellido, String usuario, String clave, String telefono, Time Tiempo) {
-        this.ID_Usuario = ID_Usuario;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.usuario = usuario;
-        this.clave = clave;
-        this.telefono = telefono;
-        this.Tiempo = Tiempo;
-    }
-
-    public Cliente(int ID_Usuario, String nombre, String apellido, String usuario, String clave, String telefono) {
-        this.ID_Usuario = ID_Usuario;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.usuario = usuario;
-        this.clave = clave;
-        this.telefono = telefono;
-    }
-
-    public Cliente(int ID_Usuario, String nombre, String apellido, String telefono) {
-        this.ID_Usuario = ID_Usuario;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-    }
-
     public Cliente(int ID_Usuario, String nombre, String apellido, String telefono, Time tiempo) {
         this.ID_Usuario = ID_Usuario;
         this.nombre = nombre;

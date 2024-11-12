@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public interface MenuAdmCliente {
-    public default void crearUsuario(Scanner sc) throws SQLException {
+    default void crearUsuario(Scanner sc) throws SQLException {
         ClienteController ac = new ClienteController();
         Cliente cl = new Cliente();
         sc.nextLine();
@@ -46,7 +46,7 @@ public interface MenuAdmCliente {
         }
     }
 
-    public default void mostrarUsuarios(){
+     default void mostrarUsuarios(){
         ClienteController clienteController = new ClienteController();
 
         try {
@@ -73,7 +73,7 @@ public interface MenuAdmCliente {
         }
     }
 
-    public default void mostrarUsuarioID(Scanner sc){
+    default void mostrarUsuarioID(Scanner sc){
         ClienteController cliente = new ClienteController();
 
         System.out.println("Ingrese el ID del cliente a buscar:");
@@ -94,7 +94,7 @@ public interface MenuAdmCliente {
         }
     }
 
-    public default void eliminarUsuario(Scanner sc, ClienteController c){
+    default void eliminarUsuario(Scanner sc, ClienteController c){
         System.out.println("\n=== ELIMINAR CLIENTE ===");
         System.out.println("Ingrese el ID del cliente a eliminar:");
         while (!sc.hasNextInt()) {
@@ -145,7 +145,7 @@ public interface MenuAdmCliente {
         }
     }
 
-    public default void modificarUsuarioPorAdmin(Scanner scanner) {
+     default void modificarUsuarioPorAdmin(Scanner scanner) {
         ClienteController cliente = new ClienteController();
 
         System.out.println("\n--- Modificar Usuario ---");

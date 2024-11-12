@@ -10,7 +10,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../TUP/ProgII/TPI/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar!/" />
+          <root url="jar://$USER_HOME$/Programa /JDBC/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

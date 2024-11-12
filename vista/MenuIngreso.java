@@ -22,7 +22,6 @@ public class MenuIngreso {
     private ClienteController c = new ClienteController();
     private int tipoUsuario;
     private Scanner sc = new Scanner(System.in);
-    private static boolean ejecutar = true;
     private static boolean bandera = true;
 
     public MenuIngreso() throws SQLException {
